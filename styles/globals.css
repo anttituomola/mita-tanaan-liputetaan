@@ -12,6 +12,8 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   background-color: #002f6cff;
+  display: flex;
+  flex-direction: column;
 
 }
 
@@ -42,6 +44,23 @@ h2, p {
 
 h3 {
   color: #dc851fff;
+}
+
+.nearestDates {
+  max-width: 960px;
+  display: flex;
+  font-size: 0.8em;
+  justify-content: space-between;
+  margin: auto auto 0 auto;
+}
+
+.nearestDates > p {
+  width: 300px;
+  max-width: 30%;
+}
+
+.right {
+  text-align: right;
 }
 
 @media screen and (max-width: 960px) {

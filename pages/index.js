@@ -1,12 +1,7 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
 import dayjs from 'dayjs'
 import "dayjs/locale/fi"
 dayjs.locale("fi")
 import { liputuspaivat } from '../liputuspaivat'
-
-console.log(liputuspaivat)
 
 const flagdates = []
 Object.values(liputuspaivat).forEach(day => {
@@ -16,6 +11,21 @@ Object.values(liputuspaivat).forEach(day => {
     flagdates.push(day)
   }
 })
+
+const allFlaggDates = () => {
+  const dates = Object.values(liputuspaivat).map(day => day)
+  const sortedDates = dates.sort((a, b) => (a.date > b.date) ? 1 : -1)
+  console.log(sortedDates)
+  const today = dayjs()
+  // Find the next date from today
+  const nextDate = sortedDates.find(date => dayjs(date.date).isAfter(today))
+  // Find all events before today
+  const pastDates = sortedDates.filter(date => dayjs(date.date).isBefore(today))
+  const previousDate = pastDates[pastDates.length - 1]
+  return { nextDate, previousDate }
+}
+
+allFlaggDates()
 
 let flagdate = ""
 if (flagdates.length > 0) {
@@ -30,14 +40,19 @@ if (flagdates.length > 0) {
   </>
 }
 
-  console.log(flagdates)
-
-  export default function Home() {
-    return (
+export default function Home() {
+  const { nextDate, previousDate } = allFlaggDates()
+  return (
+    <>
       <div className='container'>
         <h1>Mitä tänään liputetaan?</h1>
         <h3>Tänään on {dayjs().format("dddd, DD.MM.YYYY")}</h3>
         {flagdate}
       </div>
-    )
-  }
+      <div className='nearestDates'>
+        <p className='left'>Edellinen liputuspäivä oli: {previousDate.name}</p>
+        <p className='right'>Seuraava liputuspäivä on: {nextDate.name}</p>
+      </div>
+    </>
+  )
+}

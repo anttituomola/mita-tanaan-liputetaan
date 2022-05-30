@@ -105,7 +105,7 @@ export const liputuspaivat = {
     },
     "Vappu eli suomalaisen työn päivä": {
         name: "Vappu eli suomalaisen työn päivä",
-        date: dayjs(dayjs().year() + "-1-5"),
+        date: dayjs(dayjs().year() + "-5-1"),
         description: "Vappu on vuosittain 1. toukokuuta vietettävä enimmäkseen länsimaalainen kansainvälinen juhlapäivä ja monissa maissa yleinen vapaapäivä. Se on kevään loppupuolen juhlapäivä sekä kansainvälinen työväen juhlapäivä. Suomessa vapunpäivää aattopäivineen vietetään työväen, ylioppilaiden ja kevään karnevaalijuhlana. Vuodesta 1979 lähtien vappu on ollut Suomessa virallinen liputuspäivä, suomalaisen työn päivä. Juhlapäivä on saanut nimensä pyhästä Valburgista, jonka muistopäivä on 1. päivä toukokuuta.",
         official: true,
         links: ["https://fi.wikipedia.org/wiki/Vappu"]
