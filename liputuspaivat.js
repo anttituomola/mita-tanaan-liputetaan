@@ -25,6 +25,18 @@ const juhannus = () => {
     return juhannuspaiva
 }
 
+const fathersDay = () => {
+    const noverberFirst = dayjs(dayjs().year() + "-11-01")
+    let firstSunday = ""
+    if (dayjs(noverberFirst).day() === 0) {
+        firstSunday = noverberFirst
+    } else {
+        firstSunday = dayjs(noverberFirst).add(7 - dayjs(noverberFirst).day(), "day")
+    }
+    const fathersDay = dayjs(firstSunday).add(7, "day")
+    return fathersDay
+}
+
 
 export const liputuspaivat = {
     "J. L. Runebergin päivä": {
@@ -110,60 +122,42 @@ export const liputuspaivat = {
         name: "Kalevalan päivä eli suomalaisen kulttuurin päivä",
         date: dayjs("2022-2-28"),
         description: "",
-        official: false
+        official: true
     },
     "Vappu eli suomalaisen työn päivä": {
         name: "Vappu eli suomalaisen työn päivä",
         date: dayjs("2022-1-5"),
         description: "",
-        official: false
+        official: true
     },
     "Äitienpäivä": {
         name: "Äitienpäivä",
         date: mothersDay(),
         description: "",
-        official: false
+        official: true
     },
     "puolustusvoimain lippujuhlan päivä eli Suomen marsalkka C.G.E. Mannerheimin syntymäpäivä": {
         name: "puolustusvoimain lippujuhlan päivä eli Suomen marsalkka C.G.E. Mannerheimin syntymäpäivä",
         date: dayjs("2022-6-4"),
         description: "",
-        official: false
+        official: true
     },
     "Juhannuspäivä": {
         name: "Juhannuspäivä",
         date: juhannus(),
         description: "",
-        official: false
+        official: true
     },
-    "": {
-        name: "",
-        date: dayjs("2022-5-15"),
+    "Isänpäivä": {
+        name: "Isänpäivä",
+        date: fathersDay(),
         description: "",
-        official: false
+        official: true
     },
-    "": {
-        name: "",
-        date: dayjs("2022-5-15"),
+    "Itsenäisyyspäivä": {
+        name: "Itsenäisyyspäivä",
+        date: dayjs("2022-12-6"),
         description: "",
-        official: false
-    },
-    "": {
-        name: "",
-        date: dayjs("2022-5-15"),
-        description: "",
-        official: false
-    },
-    "": {
-        name: "",
-        date: dayjs("2022-5-15"),
-        description: "",
-        official: false
-    },
-    "": {
-        name: "",
-        date: dayjs("2022-5-15"),
-        description: "",
-        official: false
+        official: true
     },
 }
