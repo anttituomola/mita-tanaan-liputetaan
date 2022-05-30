@@ -64,12 +64,6 @@ export const liputuspaivat = {
         description: "Yhdistyneiden Kansakuntien päivä",
         official: false
     },
-    "": {
-        name: "",
-        date: dayjs("2022-5-15"),
-        description: "",
-        official: false
-    },
     "svenska dagen, ruotsalaisuuden päivä": {
         name: "svenska dagen, ruotsalaisuuden päivä",
         date: dayjs("2022-11-6"),

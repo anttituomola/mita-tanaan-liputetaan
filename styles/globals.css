@@ -1,9 +1,18 @@
+/* CSS HEX COLORS
+--orange: #dc851fff;
+--blue: #002f6cff;
+--white: #ffffffff;
+--green: #45462aff;
+*/
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: #002f6cff;
+
 }
 
 a {
@@ -13,4 +22,33 @@ a {
 
 * {
   box-sizing: border-box;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: white;
+  font-size: 5rem;
+}
+
+h2, p {
+  color: white;
+}
+
+h3 {
+  color: #dc851fff;
+}
+
+@media screen and (max-width: 960px) {
+  h1 {
+    font-size: 4rem;
+  }
+  body {
+    margin: 1em;
+  }
 }
