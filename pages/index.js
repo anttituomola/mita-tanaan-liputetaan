@@ -6,6 +6,8 @@ import "dayjs/locale/fi"
 dayjs.locale("fi")
 import { liputuspaivat } from '../liputuspaivat'
 
+console.log(liputuspaivat)
+
 const flagdates = []
 Object.values(liputuspaivat).forEach(day => {
   const today = dayjs().format("DD.MM.YYYY")

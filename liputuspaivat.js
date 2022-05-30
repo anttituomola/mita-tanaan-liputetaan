@@ -13,7 +13,19 @@ const mothersDay = () => {
     const mothersDay = dayjs(firstSunday).add(7, "day")
     return mothersDay
 } 
-mothersDay()
+
+const juhannus = () => {
+    const aloituspaiva = dayjs(dayjs().year() + "-6-20")
+    let juhannuspaiva = ""
+    if (dayjs(aloituspaiva).day() === 6) {
+        juhannuspaiva = aloituspaiva
+    } else {
+        juhannuspaiva = dayjs(aloituspaiva).add(6 - dayjs(aloituspaiva).day(), "day")
+    }
+    return juhannuspaiva
+}
+
+
 export const liputuspaivat = {
     "J. L. Runebergin päivä": {
         name: "J. L. Runebergin päivä",
@@ -112,6 +124,24 @@ export const liputuspaivat = {
         description: "",
         official: false
     },
+    "puolustusvoimain lippujuhlan päivä eli Suomen marsalkka C.G.E. Mannerheimin syntymäpäivä": {
+        name: "puolustusvoimain lippujuhlan päivä eli Suomen marsalkka C.G.E. Mannerheimin syntymäpäivä",
+        date: dayjs("2022-6-4"),
+        description: "",
+        official: false
+    },
+    "Juhannuspäivä": {
+        name: "Juhannuspäivä",
+        date: juhannus(),
+        description: "",
+        official: false
+    },
+    "": {
+        name: "",
+        date: dayjs("2022-5-15"),
+        description: "",
+        official: false
+    },
     "": {
         name: "",
         date: dayjs("2022-5-15"),
@@ -124,5 +154,16 @@ export const liputuspaivat = {
         description: "",
         official: false
     },
-     
+    "": {
+        name: "",
+        date: dayjs("2022-5-15"),
+        description: "",
+        official: false
+    },
+    "": {
+        name: "",
+        date: dayjs("2022-5-15"),
+        description: "",
+        official: false
+    },
 }
