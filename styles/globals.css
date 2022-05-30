@@ -67,7 +67,9 @@ h3 {
 .theDay {
   margin: 0;
 }
-
+.white {
+  color: white;
+}
 @media screen and (max-width: 960px) {
   h1 {
     font-size: 2.5rem;

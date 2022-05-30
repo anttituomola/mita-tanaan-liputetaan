@@ -5,7 +5,7 @@ import { liputuspaivat } from '../liputuspaivat'
 
 const flagdates = []
 Object.values(liputuspaivat).forEach(day => {
-  const today = dayjs("2022-3-19").format("DD.MM.YYYY")
+  const today = dayjs().format("DD.MM.YYYY")
   const liputuspaiva = dayjs(day.date).format("DD.MM.YYYY")
   if (today === liputuspaiva) {
     flagdates.push(day)
@@ -30,9 +30,9 @@ allFlaggDates()
 let flagdate = ""
 if (flagdates.length > 0) {
   flagdate = <>
-    <h3>Tänään liputetaan, koska on</h3><h1 className='theDay'>{flagdates[0].name}</h1>
+    <h3 className='white'>Tänään liputetaan, koska on</h3><h1 className='theDay'>{flagdates[0].name}</h1>
     <p>{flagdates[0].description}</p>
-    <p><small>Lisätietoa ja lähde: <a href={flagdates[0].links[0]}>{flagdates[0].links[0]}</a></small></p>
+    <p><small>Lisätietoa ja lähde: <a href={flagdates[0].links[0]}>Wikipedia</a></small></p>
   </>
 } else {
   flagdate = <>
