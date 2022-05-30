@@ -5,7 +5,7 @@ import { liputuspaivat } from '../liputuspaivat'
 
 const flagdates = []
 Object.values(liputuspaivat).forEach(day => {
-  const today = dayjs("2022-6-4").format("DD.MM.YYYY")
+  const today = dayjs("2022-3-19").format("DD.MM.YYYY")
   const liputuspaiva = dayjs(day.date).format("DD.MM.YYYY")
   if (today === liputuspaiva) {
     flagdates.push(day)
