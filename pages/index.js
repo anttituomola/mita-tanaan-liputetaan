@@ -5,7 +5,7 @@ import { liputuspaivat } from '../liputuspaivat'
 
 const flagdates = []
 Object.values(liputuspaivat).forEach(day => {
-  const today = dayjs().format("DD.MM.YYYY")
+  const today = dayjs("2022-6-4").format("DD.MM.YYYY")
   const liputuspaiva = dayjs(day.date).format("DD.MM.YYYY")
   if (today === liputuspaiva) {
     flagdates.push(day)
@@ -30,13 +30,13 @@ allFlaggDates()
 let flagdate = ""
 if (flagdates.length > 0) {
   flagdate = <>
-    <h2>Tänään liputetaan, koska on {flagdates[0].name}</h2>
+    <h3>Tänään liputetaan, koska on</h3><h1 className='theDay'>{flagdates[0].name}</h1>
     <p>{flagdates[0].description}</p>
     <p><small>Lisätietoa ja lähde: <a href={flagdates[0].links[0]}>{flagdates[0].links[0]}</a></small></p>
   </>
 } else {
   flagdate = <>
-    <h2>Tänään ei liputeta</h2>
+    <h1>Tänään ei liputeta</h1>
   </>
 }
 
@@ -45,13 +45,13 @@ export default function Home() {
   return (
     <>
       <div className='container'>
-        <h1>Mitä tänään liputetaan?</h1>
+        <h2>Mitä tänään liputetaan?</h2>
         <h3>Tänään on {dayjs().format("dddd, DD.MM.YYYY")}</h3>
         {flagdate}
       </div>
       <div className='nearestDates'>
-        <p className='left'>Edellinen liputuspäivä oli: {previousDate.name}</p>
-        <p className='right'>Seuraava liputuspäivä on: {nextDate.name}</p>
+        <p className='left'>Edellinen liputuspäivä oli: {previousDate.name}, {dayjs(previousDate.date).format("DD.MM.YYYY")}</p>
+        <p className='right'>Seuraava liputuspäivä on: {nextDate.name}, {dayjs(nextDate.date).format("DD.MM.YYYY")}</p>
       </div>
     </>
   )

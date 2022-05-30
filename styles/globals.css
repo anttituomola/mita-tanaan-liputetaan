@@ -14,7 +14,6 @@ body {
   background-color: #002f6cff;
   display: flex;
   flex-direction: column;
-
 }
 
 a {
@@ -36,6 +35,8 @@ a {
 h1 {
   color: white;
   font-size: 5rem;
+  word-wrap: break-word;
+
 }
 
 h2, p {
@@ -63,9 +64,18 @@ h3 {
   text-align: right;
 }
 
+.theDay {
+  margin: 0;
+}
+
 @media screen and (max-width: 960px) {
   h1 {
-    font-size: 4rem;
+    font-size: 2.5rem;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    display: inline-block;
+    overflow-wrap: anywhere;
+    margin-block-end: 0px;
   }
   body {
     margin: 1em;
