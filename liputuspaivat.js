@@ -2,6 +2,18 @@ import dayjs from "dayjs"
 import "dayjs/locale/fi"
 dayjs.locale("fi")
 
+const mothersDay = () => {
+    const mayFirst = dayjs(dayjs().year() + "-05-01")
+    let firstSunday = ""
+    if (dayjs(mayFirst).day() === 0) {
+        firstSunday = mayFirst
+    } else {
+        firstSunday = dayjs(mayFirst).add(7 - dayjs(mayFirst).day(), "day")
+    }
+    const mothersDay = dayjs(firstSunday).add(7, "day")
+    return mothersDay
+} 
+mothersDay()
 export const liputuspaivat = {
     "J. L. Runebergin päivä": {
         name: "J. L. Runebergin päivä",
@@ -82,21 +94,21 @@ export const liputuspaivat = {
         description: "Jean Sibeliuksen päivä eli suomalaisen musiikin päivä",
         official: false
     },
-    "": {
-        name: "",
-        date: dayjs("2022-5-15"),
+    "Kalevalan päivä eli suomalaisen kulttuurin päivä": {
+        name: "Kalevalan päivä eli suomalaisen kulttuurin päivä",
+        date: dayjs("2022-2-28"),
         description: "",
         official: false
     },
-    "": {
-        name: "",
-        date: dayjs("2022-5-15"),
+    "Vappu eli suomalaisen työn päivä": {
+        name: "Vappu eli suomalaisen työn päivä",
+        date: dayjs("2022-1-5"),
         description: "",
         official: false
     },
-    "": {
-        name: "",
-        date: dayjs("2022-5-15"),
+    "Äitienpäivä": {
+        name: "Äitienpäivä",
+        date: mothersDay(),
         description: "",
         official: false
     },
