@@ -4,7 +4,6 @@ dayjs.locale("fi")
 
 import { mothersDay, juhannus, fathersDay, kaatuneittenMuistopaiva } from "./dateCalculations"
 
-
 export const liputuspaivat = {
     "J. L. Runebergin päivä": {
         name: "J. L. Runebergin päivä",
