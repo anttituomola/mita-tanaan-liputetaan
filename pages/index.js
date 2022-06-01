@@ -1,4 +1,5 @@
 import dayjs from 'dayjs'
+import Link from 'next/link'
 import "dayjs/locale/fi"
 dayjs.locale("fi")
 import { liputuspaivat } from '../liputuspaivat'
@@ -48,6 +49,7 @@ export default function Home() {
         <h2>Mitä tänään liputetaan?</h2>
         <h3>Tänään on {dayjs().format("dddd, DD.MM.YYYY")}</h3>
         {flagdate}
+        <small><p><Link href="/kaikkiSuomenLiputuspaivat">Katso kaikki Suomen liputuspäivät</Link></p></small>
       </div>
       <div className='nearestDates'>
         <p className='left'>Edellinen liputuspäivä oli: {previousDate.name}, {dayjs(previousDate.date).format("DD.MM.YYYY")}</p>
