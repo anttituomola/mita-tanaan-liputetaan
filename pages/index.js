@@ -43,6 +43,7 @@ if (flagdates.length > 0) {
 
 export default function Home() {
   const { nextDate, previousDate } = allFlaggDates()
+  const previousLink = `/liputuspaivat/${previousDate.name}`
   return (
     <>
       <div className='container'>
@@ -52,8 +53,10 @@ export default function Home() {
         <small><p><Link href="/kaikkiSuomenLiputuspaivat">Katso kaikki Suomen liputuspäivät</Link></p></small>
       </div>
       <div className='nearestDates'>
-        <p className='left'>Edellinen liputuspäivä oli: {previousDate.name}, {dayjs(previousDate.date).format("DD.MM.YYYY")}</p>
-        <p className='right'>Seuraava liputuspäivä on: {nextDate.name}, {dayjs(nextDate.date).format("DD.MM.YYYY")}</p>
+        <p className='left'>Edellinen liputuspäivä oli: 
+          <Link href={`/liputuspaivat/${previousDate.name}`}><a> {previousDate.name}, {dayjs(previousDate.date).format("DD.MM.YYYY")}</a></Link></p>
+        <p className='right'>Seuraava liputuspäivä on: 
+        <Link href={`/liputuspaivat/${nextDate.name}`}><a>{nextDate.name}, {dayjs(nextDate.date).format("DD.MM.YYYY")}</a></Link></p>
       </div>
     </>
   )
