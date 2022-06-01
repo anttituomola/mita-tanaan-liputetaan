@@ -27,7 +27,7 @@ export const liputuspaivat = [
         links: ["https://fi.wikipedia.org/wiki/Mikael_Agricolan_p%C3%A4iv%C3%A4"]
     },
     {
-        name: "kansallinen veteraanipäivä",
+        name: "Kansallinen veteraanipäivä",
         date: dayjs(dayjs().year() + "-4-27"),
         description: "Kansallinen veteraanipäivä on Suomessa sotaveteraanien kunniaksi 27. huhtikuuta vietettävä juhlapäivä ja yleinen liputuspäivä. Sitä vietettiin ensimmäisen kerran vuonna 1987 Lahdessa osana Suomen itsenäisyyden 70-vuotisjuhlavuotta. Ehdotuksen kansallisesta veteraanipäivästä teki pääministeri Kalevi Sorsa ja asia vahvistettiin valtioneuvostossa puolustusministeri Veikko Pihlajamäen esityksestä 1986. Tehtävä siirtyi Keski-Suomen lääninhallituksen sosiaali- ja terveysosastolle, jossa Keski-Suomen läänin veteraanipäivän järjestelyt hoiti Pekka Kaura-aho käyttäen tapahtumaan 32 000 markkaa.",
         official: false,
