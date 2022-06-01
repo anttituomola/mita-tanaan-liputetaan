@@ -55,7 +55,7 @@ export default function Home() {
         <meta property="og:url" content="https://mitatanaanliputetaan.vercel.app/" />
         <meta property="og:title" content="Mitä tänään liputetaan?" />
         <meta property="og:description" content="Katso, mikä liputuspäivä tänään on? Lista kaikista Suomen liputuspäivistä, lisätiedot ja Wikipedia-linkit!" />
-        <meta property="og:image" content="/mita_tanaan_liputetaan.png" />
+        <meta property="og:image" content="mita_tanaan_liputetaan.png" />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://mitatanaanliputetaan.vercel.app/" />
