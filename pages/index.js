@@ -61,7 +61,9 @@ export default function Home() {
         <meta property="twitter:url" content="https://mitatanaanliputetaan.vercel.app/" />
         <meta property="twitter:title" content="Mitä tänään liputetaan?" />
         <meta property="twitter:description" content="Katso, mikä liputuspäivä tänään on? Lista kaikista Suomen liputuspäivistä, lisätiedot ja Wikipedia-linkit!" />
-        <meta property="twitter:image" content="./mita_tanaan_liputetaan.png" />
+        <meta property="twitter:image" content="/mita_tanaan_liputetaan.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="730" />
       </Head>
       
       <div className='container'>
