@@ -56,7 +56,7 @@ export default function Home() {
         <p className='left'>Edellinen liputuspäivä oli: 
           <Link href={`/liputuspaivat/${previousDate.name}`}><a> {previousDate.name}, {dayjs(previousDate.date).format("DD.MM.YYYY")}</a></Link></p>
         <p className='right'>Seuraava liputuspäivä on: 
-        <Link href={`/liputuspaivat/${nextDate.name}`}><a>{nextDate.name}, {dayjs(nextDate.date).format("DD.MM.YYYY")}</a></Link></p>
+        <Link href={`/liputuspaivat/${nextDate.name}`}><a> {nextDate.name}, {dayjs(nextDate.date).format("DD.MM.YYYY")}</a></Link></p>
       </div>
     </>
   )
