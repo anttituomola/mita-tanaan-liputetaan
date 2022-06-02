@@ -35,7 +35,7 @@ const liputuspaiva = () => {
                 <meta property="twitter:image" content="../../mita_tanaan_liputetaan.png" />
             </Head>
 
-            <h1>{queryDate}</h1>
+            <h1>{theDate.name}</h1>
             <h3>{dayjs(theDate.date).format("dddd, DD.MM.YYYY")}</h3>
             <small><p>{theDate.official === true ? "Virallinen liputuspäivä" : "Suositeltu liputuspäivä"}</p></small>
             <p>{theDate.description}</p>

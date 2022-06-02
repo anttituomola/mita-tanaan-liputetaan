@@ -48,7 +48,7 @@ export const liputuspaivat = [
         links: ["https://fi.wikipedia.org/wiki/Suomalaisuuden_p%C3%A4iv%C3%A4"]
     },  
     {
-        name: "kaatuneitten muistopäivä",
+        name: "Kaatuneitten muistopäivä",
         date: kaatuneittenMuistopaiva(),
         description: "Kaatuneitten muistopäivä, jota vietetään toukokuun kolmantena sunnuntaina, on Suomen aluetta ja suomalaisia koskettaneissa sodissa tai muissa taisteluluonteisissa toimissa, kuten rauhanturvaamistehtävissä, kaatuneiden sekä taistelujen aikana ja niiden päättymisen jälkeen muillakin tavoin sodan takia kuolleiden, kuten teloitettujen ja vankileireillä menehtyneiden, muistoksi vietettävä päivä.",
         official: false,
@@ -118,7 +118,7 @@ export const liputuspaivat = [
         links: ["https://fi.wikipedia.org/wiki/%C3%84itienp%C3%A4iv%C3%A4"]
     },
     {
-        name: "puolustusvoimain lippujuhlan päivä",
+        name: "Puolustusvoimain lippujuhlan päivä",
         date: dayjs(dayjs().year() + "-6-4"),
         description: "Puolustusvoimain lippujuhlan päivä on Suomessa vuosittain 4. kesäkuuta vietettävä puolustusvoimien juhlapäivä ja virallinen liputuspäivä. Lippujuhlapäivänä jaetaan myönnetyt kunniamerkit ja ylennetään ansioituneita sotilaita ja reserviläisiä.",
         official: true,
