@@ -124,3 +124,8 @@ ul {
     margin: 1em;
   }
 }
+@media screen and (max-width: 400px) {
+  .navbar {
+    gap: 0.5em;
+  }
+}
