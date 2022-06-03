@@ -48,6 +48,7 @@ export default function Home() {
     <>
       <Head>
         <title>Mitä tänään liputetaan?</title>
+        <link rel="shortcut icon" href="/favicon.ico" />
         <meta name="title" content="Mitä tänään liputetaan?" />
         <meta name="description" content="Katso, mikä liputuspäivä tänään on? Lista kaikista Suomen liputuspäivistä, lisätiedot ja Wikipedia-linkit!" />
 
