@@ -50,18 +50,18 @@ export default function Home() {
         <title>Mitä tänään liputetaan?</title>
         <link rel="shortcut icon" href="/favicon.ico" />
         <meta name="title" content="Mitä tänään liputetaan?" />
-        <meta name="description" content="Katso, mikä liputuspäivä tänään on? Lista kaikista Suomen liputuspäivistä, lisätiedot ja Wikipedia-linkit!" />
+        <meta name="description" content="Katso, mikä liputuspäivä tänään on! Lista kaikista Suomen liputuspäivistä, lisätiedot ja Wikipedia-linkit!" />
 
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://mitatanaanliputetaan.vercel.app/" />
         <meta property="og:title" content="Mitä tänään liputetaan?" />
-        <meta property="og:description" content="Katso, mikä liputuspäivä tänään on? Lista kaikista Suomen liputuspäivistä, lisätiedot ja Wikipedia-linkit!" />
+        <meta property="og:description" content="Katso, mikä liputuspäivä tänään on! Lista kaikista Suomen liputuspäivistä, lisätiedot ja Wikipedia-linkit!" />
         <meta property="og:image" content="mita_tanaan_liputetaan.png" />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://mitatanaanliputetaan.vercel.app/" />
         <meta property="twitter:title" content="Mitä tänään liputetaan?" />
-        <meta property="twitter:description" content="Katso, mikä liputuspäivä tänään on? Lista kaikista Suomen liputuspäivistä, lisätiedot ja Wikipedia-linkit!" />
+        <meta property="twitter:description" content="Katso, mikä liputuspäivä tänään on! Lista kaikista Suomen liputuspäivistä, lisätiedot ja Wikipedia-linkit!" />
         <meta property="twitter:image" content="mita_tanaan_liputetaan.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="730" />
