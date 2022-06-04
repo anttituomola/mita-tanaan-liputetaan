@@ -4,15 +4,13 @@ import dayjs from "dayjs"
 import Head from "next/head"
 
 const getDates = () => {
-    const dates = Object.keys(liputuspaivat).map(key => {
-        return (
-            <p key={key}>
-                <Link href={"/liputuspaivat/" + liputuspaivat[key].name}>{liputuspaivat[key].name}</Link>
-            </p>
-        )
+    const sortedDates = Object.keys(liputuspaivat).sort((a, b) => {
+        return dayjs(liputuspaivat[a].date) - dayjs(liputuspaivat[b].date)
     })
-    return dates
+    return sortedDates
 }
+
+
 const dynamicPages = () => {
     return (
         <div className="container">
@@ -35,7 +33,7 @@ const dynamicPages = () => {
             </Head>
 
             <h1>Kaikki Suomen liputuspäivät</h1>
-            <div>{Object.keys(liputuspaivat).map(key => {
+            <div>{getDates().map(key => {
                 return (
                     <p key={key}>
                         <Link className="link" href={"/liputuspaivat/" + liputuspaivat[key].name}>{liputuspaivat[key].name}</Link>,
