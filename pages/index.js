@@ -21,7 +21,8 @@ const allFlaggDates = () => {
   // Find the next date from today
   const nextDate = sortedDates.find(date => dayjs(date.date).isAfter(today))
   // Find all events before today
-  const pastDates = sortedDates.filter(date => dayjs(date.date).isBefore(today))
+  const yesterday = today.subtract(1, 'day')
+  const pastDates = sortedDates.filter(date => dayjs(date.date).isBefore(yesterday))
   const previousDate = pastDates[pastDates.length - 1]
   return { nextDate, previousDate }
 }
