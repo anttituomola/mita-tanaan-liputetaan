@@ -75,10 +75,14 @@ export default function Home() {
         <small><p><Link href="/kaikkiSuomenLiputuspaivat">Katso kaikki Suomen liputuspäivät</Link></p></small>
       </div>
       <div className='nearestDates'>
+        {previousDate ? 
         <p className='left'>Edellinen liputuspäivä oli:
           <Link href={`/liputuspaivat/${previousDate.name}`}><a> {previousDate.name}, {dayjs(previousDate.date).format("DD.MM.YYYY")}</a></Link></p>
-        <p className='right'>Seuraava liputuspäivä on:
-          <Link href={`/liputuspaivat/${nextDate.name}`}><a> {nextDate.name}, {dayjs(nextDate.date).format("DD.MM.YYYY")}</a></Link></p>
+        : <p className='left'>Edellinen liputuspäivä oli viime vuoden puolella!</p>
+        }
+        {nextDate ? <p className='right'>Seuraava liputuspäivä on:
+          <Link href={`/liputuspaivat/${nextDate.name}`}><a> {nextDate.name}, {dayjs(nextDate.date).format("DD.MM.YYYY")}</a></Link></p> 
+          : <p className='right'>Seuraava liputuspäivä on ensi vuonna!</p>}
       </div>
     </>
   )
