@@ -38,6 +38,10 @@ a {
     margin: 0 auto;
   }
 
+.breakRows {
+    word-wrap: break-word;
+}
+
 h1 {
   color: white;
   font-size: 5rem;
@@ -133,6 +137,9 @@ ul {
 }
 @media screen and (max-width: 400px) {
   .navbar {
-    gap: 0.5em;
+    gap: 0em;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
   }
 }
