@@ -6,8 +6,8 @@ import Head from "next/head"
 
 const api = () => {
     <Head>
-        <title>Kaikki Suomen liputuspäivät: mitätänäänliputetaan.fi</title>
-        <meta name="title" content="Mitä tänään liputetaan? Kaikki Suomen liputuspäivät!" />
+        <title>Liputuspäivät-API eli rajapinta:_kaikki Suomen liputuspäivät</title>
+        <meta name="title" content="Ilmainen ja avoin rajapinta eli API suomalaisille liputuspäiville" />
         <meta name="description" content="Katso, mikä liputuspäivä tänään on? Lista kaikista Suomen liputuspäivistä, lisätiedot ja Wikipedia-linkit!" />
 
         <meta property="og:type" content="website" />
