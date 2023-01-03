@@ -145,12 +145,5 @@ export const liputuspaivat = [
         official: true,
         links: ["https://fi.wikipedia.org/wiki/Suomen_itsen%C3%A4isyysp%C3%A4iv%C3%A4"]
     },
-    {
-        name: "Jean Sibeliuksen päivä eli suomalaisen musiikin päivä",
-        date: dayjs(dayjs().year() + "-12-8"),
-        description: "Jean Sibeliuksen päivää eli suomalaisen musiikin päivää vietetään Jean Sibeliuksen syntymäpäivänä 8. joulukuuta. Sisäministeriö antoi suosituksen liputuksesta vuonna 2005 ja teki Helsingin yliopiston almanakkatoimistolle esityksen päivän lisäämisestä kalentereihin vuonna 2007. Jean Sibeliuksen päivä on merkitty kalentereihin liputuspäiväksi vuosikerrasta 2011 lähtien",
-        official: false,
-        links: ["https://fi.wikipedia.org/wiki/Jean_Sibeliuksen_p%C3%A4iv%C3%A4"]
-    },
 ]
 
