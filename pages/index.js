@@ -44,7 +44,6 @@ if (flagdates.length > 0) {
 
 export default function Home() {
   const { nextDate, previousDate } = allFlaggDates()
-  const previousLink = `/liputuspaivat/${previousDate.name}`
   return (
     <>
       <Head>
