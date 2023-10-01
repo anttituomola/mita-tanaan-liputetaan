@@ -145,5 +145,19 @@ export const liputuspaivat = [
         official: true,
         links: ["https://fi.wikipedia.org/wiki/Suomen_itsen%C3%A4isyysp%C3%A4iv%C3%A4"]
     },
+    {
+        name: "Suomen luonnon päivä",
+        date: dayjs(dayjs().year() + "-8-31"),
+        description: "Suomen luonnon päivä on luonnon juhlapäivä, jota vietetään elokuun viimeisenä lauantaina.[1] Päivän tarkoituksena on koota suomalaiset yhteen juhlistamaan ja arvostamaan Suomen luontoa.[2] Suomen luonnon päivää on vietetty vuodesta 2013.", 
+		official: false,
+        links: ["https://fi.wikipedia.org/wiki/Suomen_luonnon_p%C3%A4iv%C3%A4"]
+    },
+    {
+        name: "Miina Sillanpään ja kansalaisvaikuttamisen päivä",
+        date: dayjs(dayjs().year() + "-10-1"),
+        description: " Päivän tarkoituksena on muistaa Miina Sillanpään elämäntyötä ja nostaa esille kansalaisvaikuttamisen merkitys yhteiskunnassa. Koska Sillanpään syntymäpäivä 4.6. on puolustusvoimain lippujuhlan päivä, liputuspäiväksi valittiin 1.10., jolloin valtiopäiväjärjestys ja vaalilaki tulivat voimaan vuonna 1906 Suomen suuriruhtinaskunnassa. Miina Sillanpään päivää vietetään Suomessa myös Järjestöjen päivänä. Päivä merkitään kalentereihin liputuspäiväksi vuonna 2023.",
+        official: false,
+        links: ["https://valtioneuvosto.fi/-/1410869/suomen-luonnon-paiva-ja-miina-sillanpaan-ja-kansalaisvaikuttamisen-paiva-liputuspaiviksi-kalenteriin-vuonna-2023"]
+    },
 ]
 
