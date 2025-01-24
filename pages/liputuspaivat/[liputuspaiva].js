@@ -2,25 +2,37 @@ import { useRouter } from "next/router"
 import { liputuspaivat } from "../../liputuspaivat"
 import dayjs from "dayjs"
 import Head from "next/head"
+import { useState, useEffect } from "react"
 
-const liputuspaiva = () => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+const Liputuspaiva = () => {
     const router = useRouter()
-    const queryDate = router.query.liputuspaiva
-    const theDate = {}
+    const { liputuspaiva } = router.query
+    const [flagDay, setFlagDay] = useState(null)
+    const [mounted, setMounted] = useState(false)
 
-    for (let day in liputuspaivat) {
-        if (liputuspaivat[day].name === queryDate) {
-            theDate = liputuspaivat[day]
+    useEffect(() => {
+        setMounted(true)
+        if (liputuspaiva) {
+            const foundDay = Object.values(liputuspaivat).find(day => day.name === liputuspaiva)
+            setFlagDay(foundDay || null)
         }
+    }, [liputuspaiva])
+
+    // Handle loading state
+    if (!mounted || !flagDay) {
+        return (
+            <div className="container">
+                <h2>Ladataan...</h2>
+            </div>
+        )
     }
 
     return (
         <div className="container">
             <Head>
-                <title>{theDate.name}: Mitä tänään liputetaan?</title>
-                <meta name="title" content={theDate.name} />
-                <meta name="description" content={theDate.description} />
+                <title>{flagDay.name}: Mitä tänään liputetaan?</title>
+                <meta name="title" content={flagDay.name} />
+                <meta name="description" content={flagDay.description} />
 
                 <meta property="og:type" content="website" />
                 <meta property="og:url" content="https://mitatanaanliputetaan.vercel.app/" />
@@ -35,13 +47,13 @@ const liputuspaiva = () => {
                 <meta property="twitter:image" content="../../mita_tanaan_liputetaan.png" />
             </Head>
 
-            <h1>{theDate.name}</h1>
-            <h3>{dayjs(theDate.date).format("dddd, DD.MM.YYYY")}</h3>
-            <small><p>{theDate.official === true ? "Virallinen liputuspäivä" : "Suositeltu liputuspäivä"}</p></small>
-            <p>{theDate.description}</p>
-            <p>Lue lisää: {<a href={theDate.links} target="_blank" rel="noreferrer">Wikipedia</a>}</p>
+            <h1>{flagDay.name}</h1>
+            <h3>{dayjs(flagDay.date).format("dddd, DD.MM.YYYY")}</h3>
+            <small><p>{flagDay.official === true ? "Virallinen liputuspäivä" : "Suositeltu liputuspäivä"}</p></small>
+            <p>{flagDay.description}</p>
+            <p>Lue lisää: <a href={flagDay.links[0]} target="_blank" rel="noreferrer">Wikipedia</a></p>
         </div>
     )
 }
 
-export default liputuspaiva
+export default Liputuspaiva

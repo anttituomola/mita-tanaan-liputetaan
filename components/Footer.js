@@ -1,8 +1,22 @@
+import { useState, useEffect } from 'react'
+
 const Footer = () => {
-    return (
-      <div className="footer"><a href="https://anttituomola.fi" target="_blank" rel="noreferrer">© Antti Tuomola</a></div>
-    )
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Return a simple placeholder during server-side rendering
+  if (!mounted) {
+    return <div className="footer"></div>
   }
-  
-  export default Footer
-  
+
+  return (
+    <div className="footer">
+      <a href="https://anttituomola.fi" target="_blank" rel="noreferrer">© Antti Tuomola</a>
+    </div>
+  )
+}
+
+export default Footer
