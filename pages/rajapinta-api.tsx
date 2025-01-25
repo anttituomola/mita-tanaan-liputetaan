@@ -4,33 +4,50 @@ import dayjs from "dayjs"
 import Head from "next/head"
 import { useState } from 'react'
 
-const Api = () => {
-    const [apiData, setApiData] = useState(null)
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(null)
+interface ApiLinkProps {
+    href: string;
+    children: React.ReactNode;
+}
 
-    const fetchApiData = async (endpoint) => {
+interface ApiResponse {
+    data?: any;
+    message?: string;
+    count?: number;
+    date?: string;
+    weekRange?: {
+        start: string;
+        end: string;
+    };
+    month?: string;
+}
+
+const Api: React.FC = () => {
+    const [apiData, setApiData] = useState<ApiResponse | null>(null)
+    const [loading, setLoading] = useState<boolean>(false)
+    const [error, setError] = useState<string | null>(null)
+
+    const fetchApiData = async (endpoint: string): Promise<void> => {
         setLoading(true)
         setError(null)
         try {
             const response = await fetch(endpoint)
-            const data = await response.json()
+            const data: ApiResponse = await response.json()
             setApiData(data)
         } catch (err) {
-            setError('Virhe haettaessa dataa: ' + err.message)
+            setError('Virhe haettaessa dataa: ' + (err instanceof Error ? err.message : 'Tuntematon virhe'))
         } finally {
             setLoading(false)
         }
     }
 
-    const handleApiClick = (e, endpoint) => {
+    const handleApiClick = (e: React.MouseEvent<HTMLButtonElement>, endpoint: string): void => {
         e.preventDefault()
         fetchApiData(endpoint)
     }
 
-    const ApiLink = ({ href, children }) => (
+    const ApiLink: React.FC<ApiLinkProps> = ({ href, children }) => (
         <button 
-            onClick={(e) => handleApiClick(e, href)}
+            onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleApiClick(e, href)}
             className="api-link"
         >
             {children}
@@ -58,7 +75,7 @@ const Api = () => {
             <main className="container">
                 <div className="breakRows">
                     <h1>Rajapinta eli API</h1>
-                    <p>mitätänäänliputetaan.fi tarjoaa käyttöösi avoimen rajapinnan Suomen liputuspäivädataan.</p>
+                    <p>https://mitatanaanliputetaan.vercel.app/ tarjoaa käyttöösi avoimen rajapinnan Suomen liputuspäivädataan.</p>
                     
                     <h2>API Dokumentaatio</h2>
                     <div className="api-docs">

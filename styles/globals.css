@@ -351,3 +351,18 @@ ul {
 .endpoint-docs p {
     margin: 0.5rem 0;
 }
+
+.api-link {
+    color: #dc851fff;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    display: inline;
+}
+
+.api-link:hover {
+    color: #ffffff;
+}
