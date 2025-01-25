@@ -32,6 +32,7 @@ a {
   max-width: 960px;
   margin: 0 auto;
   padding: 2rem 1rem;
+  width: 100%;
 }
 
 .container2 {
@@ -43,6 +44,8 @@ a {
 
 .breakRows {
   word-wrap: break-word;
+  width: 100%;
+  max-width: 100%;
 }
 
 h1 {
@@ -153,7 +156,6 @@ ul {
   position: absolute;
   right: 1rem;
   top: 0.75rem;
-  z-index: 10;
   border-radius: 6px;
   transition: background-color 0.2s ease-in-out;
 }
@@ -194,6 +196,7 @@ ul {
   }
   .container {
     margin: 0;
+    padding: 1rem;
   }
   .nearestDates {
     margin: 2rem 0;
@@ -207,7 +210,7 @@ ul {
 
   .navbar {
     flex-direction: column;
-    align-items: stretch;
+    align-items: flex-start;
     position: fixed;
     top: 0;
     right: -100%;
@@ -219,17 +222,23 @@ ul {
     width: 100%;
     max-width: 300px;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .navbar.open {
+    right: 0;
   }
 
   .navbar li {
     width: 100%;
+    margin-bottom: 0.5rem;
   }
 
   .navbar li a {
     padding: 0.75rem 1.25rem;
     width: 100%;
     background-color: rgba(0, 47, 108, 0.1);
-    margin: 0.25rem 0;
   }
 
   .navbar li a:hover {
@@ -239,10 +248,6 @@ ul {
   .navbar li a.active {
     background-color: #002f6cff;
     color: #ffffff;
-  }
-
-  .navbar.open {
-    right: 0;
   }
 
   .hamburger-line.open:nth-child(1) {
@@ -256,12 +261,37 @@ ul {
   .hamburger-line.open:nth-child(3) {
     transform: rotate(-45deg);
   }
+
+  /* Mobile API Response Styles */
+  .api-response {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0.5rem;
+  }
+
+  .api-response pre {
+    font-size: 0.875rem;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-width: 100%;
+  }
+
+  .api-docs {
+    padding: 1rem;
+  }
+
+  .api-docs code {
+    word-break: break-all;
+  }
 }
 
 /* API Styles */
 .api-list {
     list-style: none;
     padding: 0;
+    width: 100%;
 }
 
 .api-list li {
@@ -291,6 +321,7 @@ ul {
     font-family: monospace;
     white-space: pre-wrap;
     word-wrap: break-word;
+    margin: 0;
 }
 
 .api-status {
@@ -314,6 +345,7 @@ ul {
     border-radius: 8px;
     padding: 2rem;
     margin: 2rem 0;
+    width: 100%;
 }
 
 .api-docs h3 {
