@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { liputuspaivat } from "../../../liputuspaivat"
-import { ApiResponse } from '../../../types/liputuspaiva'
+import { ApiResponse, Liputuspaiva } from '../../../types/liputuspaiva'
+import dayjs from 'dayjs'
 
 export default function handler(
     req: NextApiRequest,
@@ -15,9 +16,15 @@ export default function handler(
             return res.status(404).json({ message: 'Liputuspäiviä ei löytynyt' })
         }
 
+        // Convert Dayjs objects to strings for the API response
+        const formattedLiputuspaivat: Liputuspaiva[] = liputuspaivat.map(paiva => ({
+            ...paiva,
+            date: dayjs.isDayjs(paiva.date) ? paiva.date.format() : paiva.date
+        }))
+
         return res.status(200).json({
-            data: liputuspaivat,
-            count: liputuspaivat.length
+            data: formattedLiputuspaivat,
+            count: formattedLiputuspaivat.length
         })
     } catch (error) {
         console.error('Error in liputuspaivat API:', error)
