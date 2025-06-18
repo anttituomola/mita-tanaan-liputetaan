@@ -10,8 +10,7 @@ const getDates = () => {
     return sortedDates
 }
 
-
-const dynamicPages = () => {
+export default function KaikkiLiputuspaivat() {
     return (
         <div className="container">
             <Head>
@@ -36,7 +35,9 @@ const dynamicPages = () => {
             <div>{getDates().map(key => {
                 return (
                     <p key={key}>
-                        <Link className="link" href={"/liputuspaivat/" + liputuspaivat[key].name}>{liputuspaivat[key].name}</Link>,
+                        <Link href={"/liputuspaivat/" + liputuspaivat[key].name}>
+                            {liputuspaivat[key].name}
+                        </Link>,
                         {dayjs(liputuspaivat[key].date).format(" dddd, DD.MM.YYYY")}
                     </p>
                 )
@@ -44,5 +45,3 @@ const dynamicPages = () => {
         </div>
     )
 }
-
-export default dynamicPages
