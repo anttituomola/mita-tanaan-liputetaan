@@ -58,11 +58,43 @@ export default function rateLimit(options = {}) {
 	}
 }
 
-// Helper function to wrap API handlers with rate limiting
+// Helper function to block external requests
+function blockExternalRequests(req, res, next) {
+	const host = req.headers.host
+	const referer = req.headers.referer
+	const origin = req.headers.origin
+
+	// Allow localhost and local development
+	if (host && (host.includes('localhost') || host.includes('127.0.0.1'))) {
+		return next()
+	}
+
+	// Allow requests from same domain
+	if (referer && referer.includes(host)) {
+		return next()
+	}
+
+	// Allow requests from same origin
+	if (origin && origin.includes(host)) {
+		return next()
+	}
+
+	// Block all other external requests
+	return res.status(403).json({
+		error: 'API access temporarily disabled for external requests',
+		message: 'This API is currently only available for internal use'
+	})
+}
+
+// Helper function to wrap API handlers with external blocking and rate limiting
 export function withRateLimit(handler, options = {}) {
 	const limiter = rateLimit(options)
 
 	return (req, res) => {
-		limiter(req, res, () => handler(req, res))
+		// First block external requests
+		blockExternalRequests(req, res, () => {
+			// Then apply rate limiting
+			limiter(req, res, () => handler(req, res))
+		})
 	}
 } 
