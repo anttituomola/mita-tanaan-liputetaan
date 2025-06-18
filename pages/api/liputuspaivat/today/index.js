@@ -1,5 +1,6 @@
 import { liputuspaivat } from "../../../../liputuspaivat"
 import dayjs from "dayjs"
+import { withRateLimit } from "../../../../utils/rateLimiter"
 
 function handler(req, res) {
 	if (req.method !== 'GET') {
