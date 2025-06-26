@@ -3,7 +3,6 @@ import dayjs from "dayjs"
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter"
 import isSameOrBefore from "dayjs/plugin/isSameOrBefore"
 import isoWeek from "dayjs/plugin/isoWeek"
-import { emergencyBlock } from "../../../../utils/emergency-block"
 
 dayjs.extend(isSameOrAfter)
 dayjs.extend(isSameOrBefore)
@@ -51,5 +50,4 @@ function handler(req, res) {
 	}
 }
 
-// Emergency block ALL external requests
-export default emergencyBlock(handler)
+export default handler

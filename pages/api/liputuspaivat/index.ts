@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { liputuspaivat } from '../../../liputuspaivat';
 import { ApiResponse, Liputuspaiva } from '../../../types/liputuspaiva';
-import { emergencyBlock } from '../../../utils/emergency-block';
 import dayjs from 'dayjs';
 
 function handler(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
@@ -38,5 +37,4 @@ function handler(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
   }
 }
 
-// Emergency block ALL external requests
-export default emergencyBlock(handler);
+export default handler;

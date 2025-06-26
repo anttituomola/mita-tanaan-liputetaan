@@ -1,6 +1,5 @@
 import { liputuspaivat } from "../../../../liputuspaivat"
 import dayjs from "dayjs"
-import { emergencyBlock } from "../../../../utils/emergency-block"
 
 function handler(req, res) {
 	if (req.method !== 'GET') {
@@ -34,5 +33,4 @@ function handler(req, res) {
 	}
 }
 
-// Emergency block ALL external requests
-export default emergencyBlock(handler)
+export default handler
