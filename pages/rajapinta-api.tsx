@@ -104,20 +104,9 @@ const Api: React.FC = () => {
         <div className='breakRows'>
           <h1>Rajapinta eli API</h1>
 
-          <div
-            className='api-notice'
-            style={{
-              backgroundColor: '#fff3cd',
-              border: '1px solid #ffeaa7',
-              borderRadius: '8px',
-              padding: '16px',
-              marginBottom: '24px',
-            }}
-          >
-            <h3 style={{ marginTop: 0, color: '#856404' }}>
-              ⚠️ API-käyttö tilapäisesti rajoitettu
-            </h3>
-            <p style={{ marginBottom: 0 }}>
+          <div className='api-notice'>
+            <h3>⚠️ API-käyttö tilapäisesti rajoitettu</h3>
+            <p>
               Ulkoisten kutsujen määrä on kasvanut liikaa, joten API on
               tilapäisesti suljettu ulkoisilta käyttäjiltä. Jos tarvitset
               API-käyttöä projektissasi, ole yhteydessä sähköpostitse. Sivuston

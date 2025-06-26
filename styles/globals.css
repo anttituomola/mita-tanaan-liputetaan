@@ -398,3 +398,25 @@ ul {
 .api-link:hover {
     color: #ffffff;
 }
+
+/* API Notice Styles */
+.api-notice {
+    background: rgba(220, 133, 31, 0.1);
+    border: 2px solid #dc851fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.api-notice h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #dc851fff;
+}
+
+.api-notice p {
+    margin-bottom: 0;
+    color: #ffffff;
+    line-height: 1.6;
+}
