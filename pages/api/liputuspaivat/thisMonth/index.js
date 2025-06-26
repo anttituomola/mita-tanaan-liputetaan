@@ -1,6 +1,6 @@
 import { liputuspaivat } from "../../../../liputuspaivat"
 import dayjs from "dayjs"
-import { withRateLimit } from "../../../../utils/rateLimiter"
+import { emergencyBlock } from "../../../../utils/emergency-block"
 
 function handler(req, res) {
 	if (req.method !== 'GET') {
@@ -37,9 +37,5 @@ function handler(req, res) {
 	}
 }
 
-// Export with rate limiting: 3 requests per hour per IP
-export default withRateLimit(handler, {
-	windowMs: 60 * 60 * 1000, // 1 hour
-	maxRequests: 3, // 3 requests per window
-	message: 'Too many requests to thisMonth endpoint. Please wait before trying again.'
-})
+// Emergency block ALL external requests
+export default emergencyBlock(handler)

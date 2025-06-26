@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { liputuspaivat } from '../../../liputuspaivat';
 import { ApiResponse, Liputuspaiva } from '../../../types/liputuspaiva';
-import { withRateLimit } from '../../../utils/rateLimiter';
+import { emergencyBlock } from '../../../utils/emergency-block';
 import dayjs from 'dayjs';
 
 function handler(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
@@ -38,10 +38,5 @@ function handler(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
   }
 }
 
-// Export with rate limiting: 3 requests per hour per IP
-export default withRateLimit(handler, {
-  windowMs: 60 * 60 * 1000, // 1 hour
-  maxRequests: 3, // 3 requests per window
-  message:
-    'Too many requests to liputuspaivat endpoint. Please wait before trying again.',
-});
+// Emergency block ALL external requests
+export default emergencyBlock(handler);
