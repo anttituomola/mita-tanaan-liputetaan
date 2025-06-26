@@ -63,26 +63,46 @@ function blockExternalRequests(req, res, next) {
 	const host = req.headers.host
 	const referer = req.headers.referer
 	const origin = req.headers.origin
+	const userAgent = req.headers['user-agent']
+
+	// Log request details for debugging (only in development)
+	if (process.env.NODE_ENV === 'development') {
+		console.log('API Request:', {
+			host,
+			referer,
+			origin,
+			userAgent,
+			ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress
+		})
+	}
 
 	// Allow localhost and local development
 	if (host && (host.includes('localhost') || host.includes('127.0.0.1'))) {
 		return next()
 	}
 
-	// Allow requests from same domain
-	if (referer && referer.includes(host)) {
-		return next()
+	// For production, ONLY allow requests with proper referer from our domain
+	if (referer) {
+		const allowedDomains = [
+			'mitatanaanliputetaan.vercel.app',
+			'mitatanaan-liputetaan.vercel.app', // in case there are variations
+			host // allow same domain
+		]
+
+		const isFromAllowedDomain = allowedDomains.some(domain =>
+			referer.includes(domain)
+		)
+
+		if (isFromAllowedDomain) {
+			return next()
+		}
 	}
 
-	// Allow requests from same origin
-	if (origin && origin.includes(host)) {
-		return next()
-	}
-
-	// Block all other external requests
+	// Block ALL other requests (including those without referer)
 	return res.status(403).json({
 		error: 'API access temporarily disabled for external requests',
-		message: 'This API is currently only available for internal use'
+		message: 'This API is currently only available for internal use',
+		timestamp: new Date().toISOString()
 	})
 }
 
