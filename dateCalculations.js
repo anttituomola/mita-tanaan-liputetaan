@@ -41,3 +41,16 @@ export const kaatuneittenMuistopaiva = () => {
     const paiva = dayjs(mothersDay()).add(7, "day")
     return paiva
 }
+
+export const suomenLuonnonPaiva = () => {
+    const augustFirst = dayjs(dayjs().year() + "-08-01")
+    const augustLast = dayjs(augustFirst).endOf("month")
+    
+    // Find the last Saturday of August
+    let lastSaturday = augustLast
+    while (lastSaturday.day() !== 6) {
+        lastSaturday = lastSaturday.subtract(1, "day")
+    }
+    
+    return lastSaturday
+}
