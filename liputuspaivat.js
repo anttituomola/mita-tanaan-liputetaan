@@ -2,7 +2,7 @@ import dayjs from "dayjs"
 import "dayjs/locale/fi"
 dayjs.locale("fi")
 
-import { mothersDay, juhannus, fathersDay, kaatuneittenMuistopaiva } from "./dateCalculations"
+import { mothersDay, juhannus, fathersDay, kaatuneittenMuistopaiva, suomenLuonnonPaiva } from "./dateCalculations"
 
 export const liputuspaivat = [
     {
@@ -147,9 +147,9 @@ export const liputuspaivat = [
     },
     {
         name: "Suomen luonnon päivä",
-        date: dayjs(dayjs().year() + "-8-31"),
-        description: "Suomen luonnon päivä on luonnon juhlapäivä, jota vietetään elokuun viimeisenä lauantaina.[1] Päivän tarkoituksena on koota suomalaiset yhteen juhlistamaan ja arvostamaan Suomen luontoa.[2] Suomen luonnon päivää on vietetty vuodesta 2013.", 
-		official: false,
+        date: suomenLuonnonPaiva(),
+        description: "Suomen luonnon päivä on luonnon juhlapäivä, jota vietetään elokuun viimeisenä lauantaina. Päivän tarkoituksena on koota suomalaiset yhteen juhlistamaan ja arvostamaan Suomen luontoa. Suomen luonnon päivää on vietetty vuodesta 2013. Vuonna 2017 sisäministeriö antoi ensimmäistä kertaa Suomen luonnon päiväksi virallisen liputussuosituksen. Sisäministeriö tiedotti maaliskuussa 2021, että vuodesta 2023 lähtien Suomen luonnon päivä on vakiintunut liputuspäivä.",
+        official: true,
         links: ["https://fi.wikipedia.org/wiki/Suomen_luonnon_p%C3%A4iv%C3%A4"]
     },
     {
