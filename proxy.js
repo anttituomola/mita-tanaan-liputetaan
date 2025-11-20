@@ -17,6 +17,35 @@ function getClientIP(request) {
 		   'unknown'
 }
 
+function maskApiKey(apiKey) {
+	if (!apiKey) return 'none'
+	if (apiKey.length <= 8) return '***'
+	return `${apiKey.substring(0, 4)}...${apiKey.substring(apiKey.length - 4)}`
+}
+
+function logRequest(request, status, code, details = {}) {
+	const timestamp = new Date().toISOString()
+	const method = request.method
+	const path = request.nextUrl.pathname
+	const ip = getClientIP(request)
+	const userAgent = request.headers.get('user-agent') || 'unknown'
+	const referer = request.headers.get('referer') || 'none'
+	
+	const logEntry = {
+		timestamp,
+		method,
+		path,
+		ip,
+		status,
+		code,
+		userAgent: userAgent.substring(0, 100), // Limit length
+		referer: referer.substring(0, 100), // Limit length
+		...details
+	}
+	
+	console.log(`[API ${status}]`, JSON.stringify(logEntry))
+}
+
 function checkRateLimit(ip) {
 	const now = Date.now()
 	const attempts = failedAuthAttempts.get(ip) || []
@@ -67,11 +96,20 @@ export function proxy(request) {
 		if (apiKey) {
 			// API key provided - check if it's valid
 			if (validApiKeys.includes(apiKey)) {
+				logRequest(request, 200, 'VALID_API_KEY', {
+					apiKeyMasked: maskApiKey(apiKey),
+					authType: 'api_key'
+				})
 				return NextResponse.next()
 			} else {
 				// Invalid API key provided - check rate limit
 				const clientIP = getClientIP(request)
 				if (!checkRateLimit(clientIP)) {
+					logRequest(request, 429, 'RATE_LIMIT_EXCEEDED', {
+						apiKeyMasked: maskApiKey(apiKey),
+						authType: 'invalid_api_key',
+						reason: 'Too many failed attempts'
+					})
 					return new NextResponse(
 						JSON.stringify({
 							error: 'Too many failed authentication attempts',
@@ -90,6 +128,10 @@ export function proxy(request) {
 				}
 				
 				// Invalid API key provided
+				logRequest(request, 401, 'INVALID_API_KEY', {
+					apiKeyMasked: maskApiKey(apiKey),
+					authType: 'invalid_api_key'
+				})
 				return new NextResponse(
 					JSON.stringify({
 						error: 'Invalid API key',
@@ -116,6 +158,10 @@ export function proxy(request) {
 			)
 
 			if (isFromAllowedDomain) {
+				logRequest(request, 200, 'ALLOWED_DOMAIN', {
+					authType: 'referer',
+					domain: referer
+				})
 				return NextResponse.next()
 			}
 		}
@@ -123,6 +169,10 @@ export function proxy(request) {
 		// No API key and not from allowed domain - check rate limit
 		const clientIP = getClientIP(request)
 		if (!checkRateLimit(clientIP)) {
+			logRequest(request, 429, 'RATE_LIMIT_EXCEEDED', {
+				authType: 'no_api_key',
+				reason: 'Too many requests without API key'
+			})
 			return new NextResponse(
 				JSON.stringify({
 					error: 'Too many requests',
@@ -141,6 +191,10 @@ export function proxy(request) {
 		}
 
 		// No API key and not from allowed domain
+		logRequest(request, 401, 'API_KEY_REQUIRED', {
+			authType: 'none',
+			reason: 'No API key provided and not from allowed domain'
+		})
 		return new NextResponse(
 			JSON.stringify({
 				error: 'API key required',
