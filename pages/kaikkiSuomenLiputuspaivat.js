@@ -64,16 +64,16 @@ export default function KaikkiLiputuspaivat({ sortedLiputuspaivat }) {
                 {sortedLiputuspaivat.map((day, index) => {
                     const dayUrl = `/liputuspaivat/${encodeURIComponent(day.name)}`
                     return (
-                        <li key={index} style={{ marginBottom: '0.5rem' }}>
+                        <li key={index} style={{ marginBottom: '0.5rem', color: '#ffffff' }}>
                             <Link href={dayUrl}>
                                 <strong>{day.name}</strong>
                             </Link>
-                            {' - '}
-                            <time dateTime={day.dateTime}>
+                            <span style={{ color: 'rgba(255, 255, 255, 0.8)' }}>{' - '}</span>
+                            <time dateTime={day.dateTime} style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
                                 {day.formattedDate}
                             </time>
                             {day.official && (
-                                <span style={{ marginLeft: '0.5rem', fontSize: '0.9em', color: '#666' }}>
+                                <span style={{ marginLeft: '0.5rem', fontSize: '0.9em', color: '#dc851fff', opacity: '0.9' }}>
                                     (Virallinen)
                                 </span>
                             )}

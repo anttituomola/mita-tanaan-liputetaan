@@ -21,6 +21,54 @@ a {
   text-decoration: none;
 }
 
+/* Improved link styles for better accessibility */
+a:focus {
+  outline: 2px solid #dc851fff;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* External links styling for better contrast */
+.container a[href^="http"],
+.container a[target="_blank"] {
+  color: #dc851fff;
+  text-decoration: underline;
+  text-decoration-color: rgba(220, 133, 31, 0.5);
+  transition: text-decoration-color 0.2s ease-in-out;
+}
+
+.container a[href^="http"]:hover,
+.container a[target="_blank"]:hover {
+  text-decoration-color: #dc851fff;
+  color: #ffffff;
+}
+
+.container a[href^="http"]:focus,
+.container a[target="_blank"]:focus {
+  outline: 2px solid #dc851fff;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Link styles for flag days list - more specific selector to avoid navbar */
+.container ul li a {
+  color: #ffffff;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.5);
+  transition: text-decoration-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.container ul li a:hover {
+  text-decoration-color: #ffffff;
+  color: #dc851fff;
+}
+
+.container ul li a:focus {
+  outline: 2px solid #dc851fff;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -57,6 +105,10 @@ h1 {
 
 h2, p {
   color: white;
+}
+
+time {
+  color: rgba(255, 255, 255, 0.9);
 }
 
 h3 {
@@ -176,7 +228,7 @@ ul {
 }
 
 .footer {
-  color: grey;
+  color: rgba(255, 255, 255, 0.8);
   text-align: end;
   margin: 1em;
 }
