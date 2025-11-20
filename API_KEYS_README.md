@@ -79,6 +79,10 @@ data = response.json()
 
 ### cURL:
 ```bash
+# Note: Add User-Agent header to bypass Vercel's Security Checkpoint
 curl -H "X-API-Key: your-api-key-here" \
+     -H "User-Agent: Mozilla/5.0 (compatible; API-Client/1.0)" \
      https://mitatanaanliputetaan.vercel.app/api/liputuspaivat
 ```
+
+**Important:** Vercel's Security Checkpoint may block requests without a browser-like User-Agent header. If you encounter a "Security Checkpoint" page, add a User-Agent header to your requests.

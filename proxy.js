@@ -4,7 +4,13 @@ import { NextResponse } from 'next/server'
 // Note: This is per-edge-instance, not global. For production scale, consider Vercel KV or Edge Config
 const failedAuthAttempts = new Map()
 const RATE_LIMIT_WINDOW = 60 * 60 * 1000 // 1 hour
-const MAX_FAILED_ATTEMPTS = 10 // Max failed attempts per minute per IP
+const MAX_FAILED_ATTEMPTS = 10 // Max failed attempts per hour per IP
+
+// IP blocking for repeated rate limit violations
+const blockedIPs = new Map() // IP -> blocked until timestamp
+const BLOCK_DURATION = 24 * 60 * 60 * 1000 // 24 hours
+const MAX_RATE_LIMIT_VIOLATIONS = 3 // Block after 3 rate limit violations
+const rateLimitViolations = new Map() // IP -> array of violation timestamps
 
 function getClientIP(request) {
 	// Try various headers that Vercel/proxies use
@@ -46,6 +52,42 @@ function logRequest(request, status, code, details = {}) {
 	console.log(`[API ${status}]`, JSON.stringify(logEntry))
 }
 
+function isIPBlocked(ip) {
+	const blockedUntil = blockedIPs.get(ip)
+	if (!blockedUntil) return false
+	
+	const now = Date.now()
+	if (now > blockedUntil) {
+		// Block expired, remove it
+		blockedIPs.delete(ip)
+		rateLimitViolations.delete(ip)
+		return false
+	}
+	
+	return true // Still blocked
+}
+
+function recordRateLimitViolation(ip) {
+	const now = Date.now()
+	const violations = rateLimitViolations.get(ip) || []
+	
+	// Remove old violations (older than block duration)
+	const recentViolations = violations.filter(timestamp => timestamp > now - BLOCK_DURATION)
+	
+	// Add current violation
+	recentViolations.push(now)
+	rateLimitViolations.set(ip, recentViolations)
+	
+	// If too many violations, block the IP
+	if (recentViolations.length >= MAX_RATE_LIMIT_VIOLATIONS) {
+		const blockedUntil = now + BLOCK_DURATION
+		blockedIPs.set(ip, blockedUntil)
+		return true // IP is now blocked
+	}
+	
+	return false // Not blocked yet
+}
+
 function checkRateLimit(ip) {
 	const now = Date.now()
 	const attempts = failedAuthAttempts.get(ip) || []
@@ -72,6 +114,13 @@ function checkRateLimit(ip) {
 				failedAuthAttempts.set(key, recent)
 			}
 		}
+		// Also clean up expired blocks
+		for (const [key, blockedUntil] of blockedIPs.entries()) {
+			if (now > blockedUntil) {
+				blockedIPs.delete(key)
+				rateLimitViolations.delete(key)
+			}
+		}
 	}
 	
 	return true // Not rate limited
@@ -90,6 +139,31 @@ export function proxy(request) {
 			return NextResponse.next()
 		}
 
+		// Check if IP is blocked first
+		const clientIP = getClientIP(request)
+		if (isIPBlocked(clientIP)) {
+			const blockedUntil = blockedIPs.get(clientIP)
+			const hoursRemaining = Math.ceil((blockedUntil - Date.now()) / (60 * 60 * 1000))
+			logRequest(request, 403, 'IP_BLOCKED', {
+				authType: 'blocked',
+				reason: 'IP blocked due to repeated rate limit violations',
+				blockedUntil: new Date(blockedUntil).toISOString(),
+				hoursRemaining
+			})
+			return new NextResponse(
+				JSON.stringify({
+					error: 'IP address blocked',
+					message: `This IP address has been temporarily blocked due to repeated violations. Block expires in ${hoursRemaining} hour(s).`,
+					code: 'IP_BLOCKED',
+					blockedUntil: new Date(blockedUntil).toISOString()
+				}),
+				{
+					status: 403,
+					headers: { 'Content-Type': 'application/json' }
+				}
+			)
+		}
+
 		// Check for valid API key first
 		const validApiKeys = process.env.API_KEYS?.split(',').map(key => key.trim()) || []
 		
@@ -103,13 +177,32 @@ export function proxy(request) {
 				return NextResponse.next()
 			} else {
 				// Invalid API key provided - check rate limit
-				const clientIP = getClientIP(request)
 				if (!checkRateLimit(clientIP)) {
+					// Record this rate limit violation
+					const isNowBlocked = recordRateLimitViolation(clientIP)
+					
 					logRequest(request, 429, 'RATE_LIMIT_EXCEEDED', {
 						apiKeyMasked: maskApiKey(apiKey),
 						authType: 'invalid_api_key',
-						reason: 'Too many failed attempts'
+						reason: 'Too many failed attempts',
+						isNowBlocked
 					})
+					
+					if (isNowBlocked) {
+						return new NextResponse(
+							JSON.stringify({
+								error: 'IP address blocked',
+								message: 'This IP address has been blocked due to repeated rate limit violations. Please contact support or try again in 24 hours.',
+								code: 'IP_BLOCKED',
+								blockedUntil: new Date(Date.now() + BLOCK_DURATION).toISOString()
+							}),
+							{
+								status: 403,
+								headers: { 'Content-Type': 'application/json' }
+							}
+						)
+					}
+					
 					return new NextResponse(
 						JSON.stringify({
 							error: 'Too many failed authentication attempts',
@@ -167,12 +260,31 @@ export function proxy(request) {
 		}
 
 		// No API key and not from allowed domain - check rate limit
-		const clientIP = getClientIP(request)
 		if (!checkRateLimit(clientIP)) {
+			// Record this rate limit violation
+			const isNowBlocked = recordRateLimitViolation(clientIP)
+			
 			logRequest(request, 429, 'RATE_LIMIT_EXCEEDED', {
 				authType: 'no_api_key',
-				reason: 'Too many requests without API key'
+				reason: 'Too many requests without API key',
+				isNowBlocked
 			})
+			
+			if (isNowBlocked) {
+				return new NextResponse(
+					JSON.stringify({
+						error: 'IP address blocked',
+						message: 'This IP address has been blocked due to repeated rate limit violations. Please contact support or try again in 24 hours.',
+						code: 'IP_BLOCKED',
+						blockedUntil: new Date(Date.now() + BLOCK_DURATION).toISOString()
+					}),
+					{
+						status: 403,
+						headers: { 'Content-Type': 'application/json' }
+					}
+				)
+			}
+			
 			return new NextResponse(
 				JSON.stringify({
 					error: 'Too many requests',
