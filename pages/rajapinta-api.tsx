@@ -105,12 +105,12 @@ const Api: React.FC = () => {
           <h1>Rajapinta eli API</h1>
 
           <div className='api-notice'>
-            <h3>⚠️ API-käyttö tilapäisesti rajoitettu</h3>
+            <h3>🔐 API-käyttö vaatii API-avaimen</h3>
             <p>
-              Ulkoisten kutsujen määrä on kasvanut liikaa, joten API on
-              tilapäisesti suljettu ulkoisilta käyttäjiltä. Jos tarvitset
-              API-käyttöä projektissasi, ole yhteydessä sähköpostitse. Sivuston
-              sisäinen toiminnallisuus jatkaa normaalia toimintaa.
+              Väärinkäytön estämiseksi API vaatii nyt API-avaimen ulkoisiin kutsuihin. 
+              Jos tarvitset API-käyttöä projektissasi, ole yhteydessä sähköpostitse 
+              saadaksesi henkilökohtaisen API-avaimen. Sivuston sisäinen toiminnallisuus 
+              jatkaa normaalia toimintaa.
             </p>
           </div>
 
@@ -123,8 +123,9 @@ const Api: React.FC = () => {
           <div className='api-docs'>
             <h3>Yleistä</h3>
             <p>
-              Kaikki API-kutsut palauttavat JSON-muotoisen vastauksen. Jokainen
-              liputuspäivä sisältää seuraavat kentät:
+              Kaikki API-kutsut palauttavat JSON-muotoisen vastauksen. Ulkoiset 
+              kutsut vaativat API-avaimen HTTP-headerissa. Jokainen liputuspäivä 
+              sisältää seuraavat kentät:
             </p>
             <ul>
               <li>
@@ -144,6 +145,17 @@ const Api: React.FC = () => {
                 <code>links</code> - Lista linkkejä lisätietoihin
               </li>
             </ul>
+
+            <h3>Autentikointi</h3>
+            <p>
+              Ulkoiset API-kutsut vaativat API-avaimen. Lähetä avain joko:
+            </p>
+            <ul>
+              <li><code>X-API-Key</code> headerissa</li>
+              <li><code>Authorization: Bearer your-api-key</code> headerissa</li>
+            </ul>
+            <p>Esimerkki cURL-kutsusta:</p>
+            <pre><code>curl -H "X-API-Key: your-api-key" https://mitatanaanliputetaan.vercel.app/api/liputuspaivat</code></pre>
 
             <h3>Päätepisteen tiedot</h3>
             <div className='endpoint-docs'>

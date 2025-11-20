@@ -1,14 +1,21 @@
 import { NextResponse } from 'next/server'
 
-export function middleware(request) {
+export function proxy(request) {
 	// Only apply to API routes
 	if (request.nextUrl.pathname.startsWith('/api/')) {
 		const host = request.headers.get('host')
 		const referer = request.headers.get('referer')
 		const userAgent = request.headers.get('user-agent') || ''
+		const apiKey = request.headers.get('x-api-key') || request.headers.get('authorization')?.replace('Bearer ', '')
 
 		// Allow localhost for development
 		if (host && (host.includes('localhost') || host.includes('127.0.0.1'))) {
+			return NextResponse.next()
+		}
+
+		// Check for valid API key
+		const validApiKeys = process.env.API_KEYS?.split(',').map(key => key.trim()) || []
+		if (apiKey && validApiKeys.includes(apiKey)) {
 			return NextResponse.next()
 		}
 
