@@ -19,36 +19,6 @@ export function proxy(request) {
 			return NextResponse.next()
 		}
 
-		// Block known problematic user agents
-		const blockedUserAgents = [
-			'homeassistant',
-			'python-requests',
-			'curl',
-			'wget',
-			'postman',
-			'insomnia',
-			'httpx',
-			'requests'
-		]
-
-		const isBlockedUserAgent = blockedUserAgents.some(blocked =>
-			userAgent.toLowerCase().includes(blocked.toLowerCase())
-		)
-
-		if (isBlockedUserAgent) {
-			return new NextResponse(
-				JSON.stringify({
-					error: 'API access blocked',
-					message: 'External API access is currently disabled',
-					code: 'BLOCKED_AT_EDGE'
-				}),
-				{
-					status: 403,
-					headers: { 'Content-Type': 'application/json' }
-				}
-			)
-		}
-
 		// Only allow requests with proper referer from our domain
 		const allowedDomains = [
 			'mitatanaanliputetaan.vercel.app',
