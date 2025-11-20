@@ -13,13 +13,30 @@ export function proxy(request) {
 			return NextResponse.next()
 		}
 
-		// Check for valid API key
+		// Check for valid API key first
 		const validApiKeys = process.env.API_KEYS?.split(',').map(key => key.trim()) || []
-		if (apiKey && validApiKeys.includes(apiKey)) {
-			return NextResponse.next()
+		
+		if (apiKey) {
+			// API key provided - check if it's valid
+			if (validApiKeys.includes(apiKey)) {
+				return NextResponse.next()
+			} else {
+				// Invalid API key provided
+				return new NextResponse(
+					JSON.stringify({
+						error: 'Invalid API key',
+						message: 'The provided API key is not valid. Please check your key and try again.',
+						code: 'INVALID_API_KEY'
+					}),
+					{
+						status: 401,
+						headers: { 'Content-Type': 'application/json' }
+					}
+				)
+			}
 		}
 
-		// Only allow requests with proper referer from our domain
+		// No API key provided - check if request is from allowed domain
 		const allowedDomains = [
 			'mitatanaanliputetaan.vercel.app',
 			'mitatanaan-liputetaan.vercel.app'
@@ -35,16 +52,20 @@ export function proxy(request) {
 			}
 		}
 
-		// Block all other external requests
+		// No API key and not from allowed domain
 		return new NextResponse(
 			JSON.stringify({
-				error: 'API access blocked',
-				message: 'External API access is currently disabled',
-				code: 'BLOCKED_AT_EDGE'
+				error: 'API key required',
+				message: 'External API access requires a valid API key. Please include your API key in the X-API-Key header or Authorization header.',
+				code: 'API_KEY_REQUIRED',
+				documentation: 'https://mitatanaanliputetaan.vercel.app/rajapinta-api'
 			}),
 			{
-				status: 403,
-				headers: { 'Content-Type': 'application/json' }
+				status: 401,
+				headers: { 
+					'Content-Type': 'application/json',
+					'WWW-Authenticate': 'Bearer realm="API"'
+				}
 			}
 		)
 	}
