@@ -1,0 +1,19 @@
+{
+  "name": "Mitä tänään liputetaan?",
+  "short_name": "Liputuspäivät",
+  "description": "Katso, mikä Suomen liputuspäivä tänään on. Lista kaikista virallisista ja vakiintuneista liputuspäivistä.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#002f6c",
+  "theme_color": "#002f6c",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ],
+  "lang": "fi",
+  "dir": "ltr"
+}

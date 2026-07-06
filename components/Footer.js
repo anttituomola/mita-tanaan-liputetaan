@@ -9,13 +9,15 @@ const Footer = () => {
 
   // Return a simple placeholder during server-side rendering
   if (!mounted) {
-    return <div className="footer"></div>
+    return <footer className="footer"></footer>
   }
 
   return (
-    <div className="footer">
-      <a href="https://anttituomola.fi" target="_blank" rel="noreferrer">© Antti Tuomola</a>
-    </div>
+    <footer className="footer">
+      <a href="https://anttituomola.fi" target="_blank" rel="noreferrer">
+        © Antti Tuomola
+      </a>
+    </footer>
   )
 }
 

@@ -1,8 +1,12 @@
 import { liputuspaivat } from '../liputuspaivat';
 import Link from 'next/link';
 import dayjs from 'dayjs';
-import Head from 'next/head';
 import { useState } from 'react';
+import Seo, {
+  SITE_URL,
+  createWebPageSchema,
+  createBreadcrumbSchema,
+} from '../components/Seo';
 
 interface ApiLinkProps {
   href: string;
@@ -62,50 +66,38 @@ const Api: React.FC = () => {
     </button>
   );
 
+  const pageTitle = 'Rajapinta eli API';
+  const pageUrl = `${SITE_URL}/rajapinta-api`;
+  const pageDescription =
+    'Ilmainen ja avoin rajapinta eli API suomalaisille liputuspäiville. Hae kaikki liputuspäivät, tämän päivän, viikon tai kuukauden liputuspäivät JSON-muodossa.';
+
+  const structuredData = [
+    createWebPageSchema({
+      url: pageUrl,
+      name: pageTitle,
+      description: pageDescription,
+    }),
+    createBreadcrumbSchema([
+      { name: 'Etusivu', url: SITE_URL },
+      { name: pageTitle, url: pageUrl },
+    ]),
+  ];
+
   return (
     <div>
-      <Head>
-        <title>
-          Liputuspäivät-API eli rajapinta: kaikki Suomen liputuspäivät
-        </title>
-        <meta
-          name='title'
-          content='Ilmainen ja avoin rajapinta eli API suomalaisille liputuspäiville'
-        />
-        <meta
-          name='description'
-          content='Katso, mikä liputuspäivä tänään on? Lista kaikista Suomen liputuspäivistä, lisätiedot ja Wikipedia-linkit!'
-        />
-        <meta property='og:type' content='website' />
-        <meta
-          property='og:url'
-          content='https://mitatanaanliputetaan.vercel.app/'
-        />
-        <meta property='og:title' content='Mitä tänään liputetaan?' />
-        <meta
-          property='og:description'
-          content='Katso, mikä liputuspäivä tänään on! Lista kaikista Suomen liputuspäivistä, lisätiedot ja Wikipedia-linkit!'
-        />
-        <meta property='og:image' content='mita_tanaan_liputetaan.png' />
-        <meta property='twitter:card' content='summary_large_image' />
-        <meta
-          property='twitter:url'
-          content='https://mitatanaanliputetaan.vercel.app/'
-        />
-        <meta property='twitter:title' content='Mitä tänään liputetaan?' />
-        <meta
-          property='twitter:description'
-          content='Katso, mikä liputuspäivä tänään on! Lista kaikista Suomen liputuspäivistä, lisätiedot ja Wikipedia-linkit!'
-        />
-        <meta property='twitter:image' content='mita_tanaan_liputetaan.png' />
-      </Head>
+      <Seo
+        title={pageTitle}
+        description={pageDescription}
+        canonical={pageUrl}
+        structuredData={structuredData}
+      />
 
-      <main className='container'>
+      <div className='container'>
         <div className='breakRows'>
           <h1>Rajapinta eli API</h1>
 
           <div className='api-notice'>
-            <h3>🔐 API-käyttö vaatii API-avaimen</h3>
+            <h2>🔐 API-käyttö vaatii API-avaimen</h2>
             <p>
               Väärinkäytön estämiseksi API vaatii nyt API-avaimen ulkoisiin kutsuihin. 
               Jos tarvitset API-käyttöä projektissasi, ole yhteydessä sähköpostitse 
@@ -115,11 +107,11 @@ const Api: React.FC = () => {
           </div>
 
           <p>
-            https://mitatanaanliputetaan.vercel.app/ tarjoaa avoimen rajapinnan
+            https://mitatanaanliputetaan.vercel.app/ tarjoaa rajapinnan
             Suomen liputuspäivädataan.
           </p>
 
-          <h2>API Dokumentaatio</h2>
+          <h2>API-dokumentaatio</h2>
           <div className='api-docs'>
             <h3>Yleistä</h3>
             <p>
@@ -155,9 +147,9 @@ const Api: React.FC = () => {
               <li><code>Authorization: Bearer your-api-key</code> headerissa</li>
             </ul>
             <p>Esimerkki cURL-kutsusta:</p>
-            <pre><code>curl -H "X-API-Key: your-api-key" https://mitatanaanliputetaan.vercel.app/api/liputuspaivat</code></pre>
+            <pre><code>curl -H &quot;X-API-Key: your-api-key&quot; https://mitatanaanliputetaan.vercel.app/api/liputuspaivat</code></pre>
 
-            <h3>Päätepisteen tiedot</h3>
+            <h3>Päätepisteiden tiedot</h3>
             <div className='endpoint-docs'>
               <h4>Kaikki liputuspäivät</h4>
               <p>
@@ -233,12 +225,12 @@ const Api: React.FC = () => {
           {error && <p className='api-status error'>{error}</p>}
           {apiData && (
             <div className='api-response'>
-              <h2>API Vastaus:</h2>
+              <h2>API-vastaus:</h2>
               <pre>{JSON.stringify(apiData, null, 2)}</pre>
             </div>
           )}
         </div>
-      </main>
+      </div>
     </div>
   );
 };

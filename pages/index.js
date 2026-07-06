@@ -1,12 +1,23 @@
 import dayjs from 'dayjs'
 import Link from 'next/link'
-import Head from 'next/head'
 import "dayjs/locale/fi"
 import { liputuspaivat } from '../liputuspaivat'
+import Seo, {
+  SITE_URL,
+  createWebSiteSchema,
+  createWebPageSchema,
+  createEventSchema,
+  createBreadcrumbSchema,
+} from '../components/Seo'
 
 dayjs.locale("fi")
 
-const SITE_URL = 'https://mitatanaanliputetaan.vercel.app'
+function truncateDescription(text, maxLength = 155) {
+  if (!text || text.length <= maxLength) return text
+  const truncated = text.slice(0, maxLength)
+  const lastSpace = truncated.lastIndexOf(' ')
+  return truncated.slice(0, lastSpace > 0 ? lastSpace : maxLength) + '...'
+}
 
 export async function getStaticProps() {
   // Calculate today's flag days
@@ -30,7 +41,8 @@ export async function getStaticProps() {
     return {
       ...date,
       date: date.date && typeof date.date.format === 'function' ? date.date.format() : date.date,
-      formattedDate: date.date && typeof date.date.format === 'function' ? date.date.format("DD.MM.YYYY") : dayjs(date.date).format("DD.MM.YYYY")
+      formattedDate: date.date && typeof date.date.format === 'function' ? date.date.format("DD.MM.YYYY") : dayjs(date.date).format("DD.MM.YYYY"),
+      dateTime: date.date && typeof date.date.format === 'function' ? date.date.format("YYYY-MM-DD") : dayjs(date.date).format("YYYY-MM-DD")
     }
   }
 
@@ -48,71 +60,61 @@ export async function getStaticProps() {
 
 export default function Home({ flagdates, nextDate, previousDate, todayFormatted, currentDate }) {
   const currentFlagDay = flagdates.length > 0 ? flagdates[0] : null
-  const pageTitle = currentFlagDay 
-    ? `${currentFlagDay.name} - Mitä tänään liputetaan?`
-    : 'Mitä tänään liputetaan?'
-  const pageDescription = currentFlagDay
-    ? `Tänään on ${currentFlagDay.name}. ${currentFlagDay.description.substring(0, 150)}...`
-    : 'Katso, mikä liputuspäivä tänään on! Lista kaikista Suomen liputuspäivistä, lisätiedot ja Wikipedia-linkit!'
-  const ogImage = `${SITE_URL}/mita_tanaan_liputetaan.png`
 
-  // Structured data for current flag day
-  const structuredData = currentFlagDay ? {
-    "@context": "https://schema.org",
-    "@type": "Event",
-    "name": currentFlagDay.name,
-    "startDate": currentFlagDay.date ? (currentFlagDay.date.includes('T') ? currentFlagDay.date.split('T')[0] : currentFlagDay.date) : currentDate,
-    "description": currentFlagDay.description,
-    "location": {
-      "@type": "Place",
-      "name": "Finland"
-    }
-  } : null
+  const pageTitlePart = currentFlagDay ? currentFlagDay.name : undefined
+  const pageDescription = currentFlagDay
+    ? `Tänään liputetaan, koska on ${currentFlagDay.name}. ${truncateDescription(currentFlagDay.description)}`
+    : 'Tänään ei ole liputuspäivää. Katso seuraava liputuspäivä ja lista kaikista Suomen virallisista ja vakiintuneista liputuspäivistä.'
+
+  const structuredData = [
+    createWebSiteSchema(),
+    createWebPageSchema({
+      url: SITE_URL,
+      name: 'Mitä tänään liputetaan?',
+      description: pageDescription,
+    }),
+    ...(currentFlagDay ? [createEventSchema(currentFlagDay)] : []),
+    createBreadcrumbSchema([
+      { name: 'Etusivu', url: SITE_URL },
+    ]),
+  ]
 
   return (
     <>
-      <Head>
-        <title>{pageTitle}</title>
-        <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="canonical" href={SITE_URL} />
-        <meta name="title" content={pageTitle} />
-        <meta name="description" content={pageDescription} />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={SITE_URL} />
-        <meta property="og:title" content={pageTitle} />
-        <meta property="og:description" content={pageDescription} />
-        <meta property="og:image" content={ogImage} />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="730" />
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={SITE_URL} />
-        <meta property="twitter:title" content={pageTitle} />
-        <meta property="twitter:description" content={pageDescription} />
-        <meta property="twitter:image" content={ogImage} />
-        {structuredData && (
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify(structuredData)
-            }}
-          />
-        )}
-      </Head>
-      
+      <Seo
+        title={pageTitlePart}
+        description={pageDescription}
+        canonical={SITE_URL}
+        structuredData={structuredData}
+      />
+
       <div className='container'>
-        <h2>Mitä tänään liputetaan?</h2>
-        <h3>Tänään on {todayFormatted}</h3>
+        <h1>Mitä tänään liputetaan?</h1>
+        <p className='date'>Tänään on {todayFormatted}</p>
         {currentFlagDay ? (
           <>
-            <h3 className='white'>Tänään liputetaan, koska on</h3>
-            <h1 className='theDay'>{currentFlagDay.name}</h1>
+            <p className='white'>Tänään liputetaan, koska on</p>
+            <h2 className='theDay'>{currentFlagDay.name}</h2>
             <p>{currentFlagDay.description}</p>
-            <p><small>Lisätietoa ja lähde: <a href={currentFlagDay.links[0]} target="_blank" rel="noreferrer">Wikipedia</a></small></p>
+            <p>
+              <small>
+                Lisätietoa ja lähde:{' '}
+                <a href={currentFlagDay.links[0]} target="_blank" rel="noreferrer">
+                  Wikipedia
+                </a>
+              </small>
+            </p>
           </>
         ) : (
-          <h1>Tänään ei liputeta</h1>
+          <h2>Tänään ei liputeta</h2>
         )}
-        <small><p><Link href="/kaikkiSuomenLiputuspaivat">Katso kaikki Suomen liputuspäivät</Link></p></small>
+        <small>
+          <p>
+            <Link href="/kaikki-suomen-liputuspäivät">
+              Katso kaikki Suomen liputuspäivät
+            </Link>
+          </p>
+        </small>
       </div>
       <div className='nearestDates'>
         {previousDate ? (

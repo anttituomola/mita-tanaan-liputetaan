@@ -1,8 +1,18 @@
 import { liputuspaivat } from "../../liputuspaivat"
 import dayjs from "dayjs"
-import Head from "next/head"
+import Seo, {
+  SITE_URL,
+  createWebPageSchema,
+  createEventSchema,
+  createBreadcrumbSchema,
+} from "../../components/Seo"
 
-const SITE_URL = 'https://mitatanaanliputetaan.vercel.app'
+function truncateDescription(text, maxLength = 155) {
+  if (!text || text.length <= maxLength) return text
+  const truncated = text.slice(0, maxLength)
+  const lastSpace = truncated.lastIndexOf(' ')
+  return truncated.slice(0, lastSpace > 0 ? lastSpace : maxLength) + '...'
+}
 
 export async function getStaticPaths() {
     const paths = liputuspaivat.map((day) => ({
@@ -40,59 +50,43 @@ export async function getStaticProps({ params }) {
 }
 
 const Liputuspaiva = ({ flagDay }) => {
-    const pageTitle = `${flagDay.name} - Mitä tänään liputetaan?`
+    const pageTitle = flagDay.name
     const pageUrl = `${SITE_URL}/liputuspaivat/${encodeURIComponent(flagDay.name)}`
-    const ogImage = `${SITE_URL}/mita_tanaan_liputetaan.png`
+    const pageDescription = truncateDescription(flagDay.description)
 
-    // Structured data
-    const structuredData = {
-        "@context": "https://schema.org",
-        "@type": "Event",
-        "name": flagDay.name,
-        "startDate": flagDay.dateTime,
-        "description": flagDay.description,
-        "location": {
-            "@type": "Place",
-            "name": "Finland"
-        }
-    }
+    const structuredData = [
+        createWebPageSchema({
+            url: pageUrl,
+            name: pageTitle,
+            description: pageDescription,
+        }),
+        createEventSchema(flagDay),
+        createBreadcrumbSchema([
+            { name: 'Etusivu', url: SITE_URL },
+            { name: 'Kaikki liputuspäivät', url: `${SITE_URL}/kaikki-suomen-liputuspäivät` },
+            { name: pageTitle, url: pageUrl },
+        ]),
+    ]
 
     return (
-        <div className="container">
-            <Head>
-                <title>{pageTitle}</title>
-                <link rel="canonical" href={pageUrl} />
-                <meta name="title" content={pageTitle} />
-                <meta name="description" content={flagDay.description} />
+        <>
+            <Seo
+                title={pageTitle}
+                description={pageDescription}
+                canonical={pageUrl}
+                structuredData={structuredData}
+            />
 
-                <meta property="og:type" content="website" />
-                <meta property="og:url" content={pageUrl} />
-                <meta property="og:title" content={pageTitle} />
-                <meta property="og:description" content={flagDay.description} />
-                <meta property="og:image" content={ogImage} />
-                <meta property="og:image:width" content="1200" />
-                <meta property="og:image:height" content="730" />
-
-                <meta property="twitter:card" content="summary_large_image" />
-                <meta property="twitter:url" content={pageUrl} />
-                <meta property="twitter:title" content={pageTitle} />
-                <meta property="twitter:description" content={flagDay.description} />
-                <meta property="twitter:image" content={ogImage} />
-
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{
-                        __html: JSON.stringify(structuredData)
-                    }}
-                />
-            </Head>
-
-            <h1>{flagDay.name}</h1>
-            <h3>{flagDay.formattedDate}</h3>
-            <small><p>{flagDay.official === true ? "Virallinen liputuspäivä" : "Suositeltu liputuspäivä"}</p></small>
-            <p>{flagDay.description}</p>
-            <p>Lue lisää: <a href={flagDay.links[0]} target="_blank" rel="noreferrer">Wikipedia</a></p>
-        </div>
+            <div className="container">
+                <h1>{flagDay.name}</h1>
+                <h2 className="flag-date">{flagDay.formattedDate}</h2>
+                <p>
+                    <small>{flagDay.official === true ? "Virallinen liputuspäivä" : "Vakiintunut liputuspäivä"}</small>
+                </p>
+                <p>{flagDay.description}</p>
+                <p>Lue lisää: <a href={flagDay.links[0]} target="_blank" rel="noreferrer">Wikipedia</a></p>
+            </div>
+        </>
     )
 }
 

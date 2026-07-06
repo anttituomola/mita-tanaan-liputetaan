@@ -8,156 +8,155 @@ export const liputuspaivat = [
     {
         name: "J. L. Runebergin päivä",
         date: dayjs(dayjs().year() + "-02-05"),
-        description: `Runebergin päivää vietetään vuosittain runoilijan syntymäpäivänä 5. helmikuuta, joka on vakiintunut liputuspäivä. Professori Matti Klingen mukaan Runebergin päivästä muodostui ensimmäisen sortokauden aikana Suomen ensimmäinen todellinen kansallispäivä koulujuhlineen, soihtukulkueineen ja seppeleenlaskuineen. Päivää juhlistetaan syömällä runebergintorttuja, makeita leivonnaisia, joita Runebergin kerrotaan mielellään nauttineen.`,
+        description: `Runebergin päivää vietetään 5. helmikuuta Suomen kansallisrunoilijan Johan Ludvig Runebergin syntymäpäivänä. Päivä on vakiintunut liputuspäivä, jonka juhlaperinteet ulottuvat 1800-luvun loppuun. Runebergin tuotannosta tunnetuimpia ovat Vänrikki Stoolin tarinat ja Maamme-laulun alkuperäinen ruotsinkielinen teksti. Perinteisesti päivää juhlistetaan runebergintortuilla, mantelilla ja rommilla maustetuilla leivonnaisilla, jotka tuovat mieleen runoilijan kotipöydän.`,
         official: false,
         links: ["https://fi.wikipedia.org/wiki/Johan_Ludvig_Runeberg"]
     },
     {
         name: "Minna Canthin päivä",
         date: dayjs(dayjs().year() + "-3-19"),
-        description: "Minna Canthin päivä, tasa-arvon päivä (ruots. Minna Canth-dagen, jämställdhetsdagen) on vakiintunut liputuspäivä Suomessa joka vuosi 19. maaliskuuta. Tasa-arvon päivä on kirjailija Minna Canthin (1844–1897) syntymäpäivä.",
+        description: `Minna Canthin päivä eli tasa-arvon päivä vietetään 19. maaliskuuta kirjailija ja yhteiskunnallinen vaikuttaja Minna Canthin syntymäpäivänä. Päivä on vakiintunut liputuspäivä, joka nostaa esiin tasa-arvon ja naisten aseman edistämisen. Canth oli yksi ensimmäisiä suomalaisia ammattikirjailijoita, jonka näytelmät ja novellit ravistelivat aikansa porvarillisia arvoja. Päivänä liputetaan ja järjestetään keskusteluja, tapahtumia sekä esityksiä, jotka kantavat tasa-arvon viestiä eteenpäin.`,
         official: false,
         links: ["https://fi.wikipedia.org/wiki/Minna_Canthin_p%C3%A4iv%C3%A4"]
     },
     {
         name: "Mikael Agricolan päivä",
         date: dayjs(dayjs().year() + "-4-9"),
-        description: "Mikael Agricolan päivää eli suomen kielen päivää vietetään Suomessa 9. huhtikuuta. Kyseessä on vakiintunut liputuspäivä. Päivää vietetään Mikael Agricolan kuolinpäivänä, vaikka yleensä henkilön kunniaksi liputetaan tämän syntymäpäivänä. Syynä tähän on se, että Agricolan tarkka syntymäaika ei ole tiedossa. Mikael Agricolan päivä tuli kalenteriin vuonna 1960 ja vuodesta 1980 lähtien se on merkitty myös liputuspäiväksi, jollaiseksi se olikin jo vakiintunut. Vuonna 1978 Agricolan päivä sai lisämääreen suomen kielen päivä.",
+        description: `Mikael Agricolan päivää eli suomen kielen päivää vietetään 9. huhtikuuta. Päivä on vakiintunut liputuspäivä, joka kunnioittaa suomen kirjakielen isänä pidetyn Mikael Agricolan työtä; samana päivänä syntyi myös runoilija Elias Lönnrot. Agricola loi pohjan suomen kirjakielelle muun muassa Abckirian ja Se Wsi Testamenti -käännöksellä. Liputuksen ohella päivää juhlistetaan kielen ja lukutaidon merkitystä korostavin tilaisuuksin.`,
         official: false,
         links: ["https://fi.wikipedia.org/wiki/Mikael_Agricolan_p%C3%A4iv%C3%A4"]
     },
     {
         name: "Kansallinen veteraanipäivä",
         date: dayjs(dayjs().year() + "-4-27"),
-        description: "Kansallinen veteraanipäivä on Suomessa sotaveteraanien kunniaksi 27. huhtikuuta vietettävä juhlapäivä ja yleinen liputuspäivä. Sitä vietettiin ensimmäisen kerran vuonna 1987 Lahdessa osana Suomen itsenäisyyden 70-vuotisjuhlavuotta. Ehdotuksen kansallisesta veteraanipäivästä teki pääministeri Kalevi Sorsa ja asia vahvistettiin valtioneuvostossa puolustusministeri Veikko Pihlajamäen esityksestä 1986. Tehtävä siirtyi Keski-Suomen lääninhallituksen sosiaali- ja terveysosastolle, jossa Keski-Suomen läänin veteraanipäivän järjestelyt hoiti Pekka Kaura-aho käyttäen tapahtumaan 32 000 markkaa.",
+        description: `Kansallinen veteraanipäivä vietetään 27. huhtikuuta Suomen sotien veteraanien kunniaksi ja rauhan muistoksi. Päivä on vakiintunut liputuspäivä, ja se sijoittuu Lapin sodan päättymispäivään. Eri puolilla maata järjestetään juhlallisuuksia, seppeleenlaskuja ja kirkkopalveluksia, joissa kiitetään veteraanien uhreja. Liputus ja muistotilaisuudet muistuttavat sodan päättymisestä ja vapauden hintaa.`,
         official: false,
         links: ["https://fi.wikipedia.org/wiki/Kansallinen_veteraanip%C3%A4iv%C3%A4"]
     },
     {
         name: "Eurooppa-päivä",
         date: dayjs(dayjs().year() + "-5-9"),
-        description: "Eurooppa-päivää vietetään Euroopassa 9. toukokuuta. 9. toukokuuta 1950 Robert Schuman esitti ehdotuksensa yhtenäisen Euroopan luomisesta välttämättömänä rauhanomaisten suhteiden ylläpitämiseksi.",
+        description: `Eurooppa-päivää vietetään 9. toukokuuta Euroopan unionin rauhan ja yhteistyön juhlapäivänä. Päivä juontaa juurensa vuoteen 1950, jolloin Ranskan ulkoministeri Robert Schuman esitti aloitteen yhteiseurooppalaisesta hiili- ja teräsyhteistyöstä. Suomessa päivä on vakiintunut liputuspäivä, jolla korostetaan Suomen kuuluvuutta Eurooppaan ja kansainvälisen yhteistyön merkitystä. Päivänä liputetaan ja järjestetään tilaisuuksia, joissa tuodaan esiin eurooppalaisia arvoja.`,
         official: false,
         links: ["https://fi.wikipedia.org/wiki/Eurooppa-p%C3%A4iv%C3%A4"]
-    },    
+    },
     {
         name: "J. V. Snellmanin päivä",
         date: dayjs(dayjs().year() + "-5-12"),
-        description: "Suomalaisuuden päivää eli J. V. Snellmanin päivää vietetään Suomessa 12. toukokuuta. Päivä on suomen kielen asemaan merkittävästi vaikuttaneen J. V. Snellmanin syntymäpäivä ja vakiintunut liputuspäivä.",
+        description: `J. V. Snellmanin päivää eli suomalaisuuden päivää vietetään 12. toukokuuta valtiomiehen ja filosofin Johan Vilhelm Snellmanin syntymäpäivänä. Päivä on vakiintunut liputuspäivä, joka korostaa suomen kielen ja suomalaisen kulttuuri-identiteetin merkitystä. Snellman vaikutti merkittävästi siihen, että suomen kieli sai virallisen aseman ja että kansakunnan itsetunto vahvistui. Liputuksen lisäksi päivänä järjestetään puheita, tilaisuuksia ja juhlia, jotka vahvistavat suomalaisuuden arvoja.`,
         official: false,
         links: ["https://fi.wikipedia.org/wiki/Suomalaisuuden_p%C3%A4iv%C3%A4"]
-    },  
+    },
     {
         name: "Kaatuneitten muistopäivä",
         date: kaatuneittenMuistopaiva(),
-        description: "Kaatuneitten muistopäivä, jota vietetään toukokuun kolmantena sunnuntaina, on Suomen aluetta ja suomalaisia koskettaneissa sodissa tai muissa taisteluluonteisissa toimissa, kuten rauhanturvaamistehtävissä, kaatuneiden sekä taistelujen aikana ja niiden päättymisen jälkeen muillakin tavoin sodan takia kuolleiden, kuten teloitettujen ja vankileireillä menehtyneiden, muistoksi vietettävä päivä.",
+        description: `Kaatuneitten muistopäivää vietetään toukokuun kolmantena sunnuntaina. Päivä on vakiintunut liputuspäivä, jolla kunnioitetaan Suomea ja suomalaisia puolustaneissa sodissa sekä rauhanturvaamistehtävissä menehtyneitä. Muistopäivänä järjestetään tilaisuuksia sankarihaudoilla ja muistomerkeillä ympäri maan. Liputus ja hiljainen hetki muistuttavat kaatuneiden uhrauksesta vapauden ja itsenäisyyden puolesta.`,
         official: false,
         links: ["https://fi.wikipedia.org/wiki/Kaatuneitten_muistop%C3%A4iv%C3%A4"]
     },
     {
         name: "Eino Leinon päivä",
         date: dayjs(dayjs().year() + "-7-6"),
-        description: "Eino Leinon päivää vietetään runoilija Eino Leinon syntymäpäivänä 6. heinäkuuta. Se on ollut vuodesta 1992 vakiintunut liputuspäivä, jota vietetään runon ja suven päivänä.",
+        description: `Eino Leinon päivää eli runon ja suven päivää vietetään 6. heinäkuuta suuren runoilijan Eino Leinon syntymäpäivänä. Päivä on vakiintunut liputuspäivä, joka yhdistää runouden ja kesän huipentuman. Leinon tuotanto, kuten Helkavirret, on jättänyt kestävän jäljen suomalaiseen kulttuuriin. Päivänä liputetaan ja nautitaan runoudesta ulkoilmatilaisuuksissa sekä kotipihoilla.`,
         official: false,
         links: ["https://fi.wikipedia.org/wiki/Eino_Leinon_p%C3%A4iv%C3%A4"]
     },
     {
         name: "Aleksis Kiven päivä",
         date: dayjs(dayjs().year() + "-10-10"),
-        description: "Aleksis Kivi (oik. Alexis Stenvall 10. lokakuuta 1834 Nurmijärvi – 31. joulukuuta 1872 Tuusula) oli suomalainen kirjailija. Kivi kirjoitti kansallisromaanin aseman saavuttaneen romaanin Seitsemän veljestä (1870), näytelmiä kuten Nummisuutarit (1864) ja runoja.",
+        description: `Aleksis Kiven päivää eli suomalaisen kirjallisuuden päivää vietetään 10. lokakuuta Aleksis Kiven syntymäpäivänä. Päivä on vakiintunut liputuspäivä, joka kunnioittaa suomalaisen kirjallisuuden merkittävimmäksi romaaniksi noussutta Seitsemää veljestä ja Kiven koko tuotantoa. Teatterit ja kirjastot järjestävät lukutilaisuuksia, esityksiä ja keskusteluja. Liputus sekä lukeminen ovat päivän keskeisiä tapoja muistaa kansalliskirjailijaa.`,
         official: false,
         links: ["https://fi.wikipedia.org/wiki/Aleksis_Kivi"]
     },
     {
         name: "Yhdistyneiden Kansakuntien päivä",
         date: dayjs(dayjs().year() + "-10-24"),
-        description: "Yhdistyneiden kansakuntien päivä on 24. lokakuuta vietettävä vuosipäivä, jota vietetään Yhdistyneiden kansakuntien (YK) perustamisen kunniaksi. Sanottuun päivään mennessä vuonna 1945 oli riittävän suuri määrä jäsenvaltioita vahvistanut YK:n perustamissopimuksen niin, että se tuli voimaan. Useissa maissa se on nykyisin myös liputuspäivä ja osa kansainvälistä YK-viikkoa, jota vietetään aina 20.–26. lokakuuta, alkoi viikko 20. lokakuuta tai ei.",
+        description: `Yhdistyneiden Kansakuntien päivää vietetään 24. lokakuuta YK:n perustamisen vuosipäivänä. Päivä on vakiintunut liputuspäivä Suomessa, ja se kuuluu kansainväliseen YK-viikkoon. Vuonna 1945 riittävä määrä jäsenvaltioita oli ratifioinut YK:n peruskirjan, jolloin se tuli voimaan. Päivänä liputetaan ja tuodaan esiin kansainvälistä yhteistyötä, rauhaa ja ihmisoikeuksia.`,
         official: false,
         links: ["https://fi.wikipedia.org/wiki/Yhdistyneiden_kansakuntien_p%C3%A4iv%C3%A4"]
     },
     {
         name: "Ruotsalaisuuden päivä",
         date: dayjs(dayjs().year() + "-11-6"),
-        description: "Ruotsalaisuuden päivä (ruots. svenska dagen) on Suomessa 6. marraskuuta vietettävä yleinen liputuspäivä. Päivä juhlistaa suomenruotsalaisten oikeutta käyttää ruotsin kieltä Suomessa. Tarkoituksena on Folktingetin mukaan myös kunnioittaa Suomen kieliryhmien yhteistä kaksikielistä isänmaata.",
+        description: `Ruotsalaisuuden päivää eli svenska dagenia vietetään 6. marraskuuta. Päivä on vakiintunut liputuspäivä, joka juhlistaa suomenruotsalaista kulttuuria ja kaksikielistä Suomea. Ajankohta liittyy Ruotsin kuningas Kustaa II Aadolfin muistopäivään, ja sitä on vietetty Suomessa jo 1900-luvun alusta. Liputuksen ohella järjestetään kulttuuritapahtumia, joissa korostetaan ruotsin kielen ja suomenruotsalaisen väestön asemaa.`,
         official: false,
         links: ["https://fi.wikipedia.org/wiki/Ruotsalaisuuden_p%C3%A4iv%C3%A4"]
     },
     {
         name: "Lapsen oikeuksien päivä",
         date: dayjs(dayjs().year() + "-11-20"),
-        description: "Lapsen oikeuksien päivä (joskus myös Kansainvälinen lasten päivä) on YK:n yleiskokouksen aloitteesta vuodesta 1954 vietetty kansainvälinen vuosipäivä. Päivän ajankohta vaihtelee maittain. Useissa maissa, myös Suomessa sitä vietetään 20. marraskuuta, sillä tuona päivänä vuonna 1959 hyväksyttiin lasten oikeuksien julistus ja 20. marraskuuta 1989 lapsen oikeuksien sopimus.",
+        description: `Kansainvälistä lapsen oikeuksien päivää vietetään 20. marraskuuta. Päivä on vakiintunut liputuspäivä Suomessa vuodesta 2020 lähtien, ja sitä juhlitaan usein koko viikon ajan. Päivä muistuttaa YK:n lapsen oikeuksien sopimuksesta, joka hyväksyttiin 20. marraskuuta 1989. Liputuksen lisäksi kouluissa, päiväkodeissa ja yhdistyksissä keskustellaan lasten oikeuksista ja lasten osallisuudesta.`,
         official: false,
         links: ["https://fi.wikipedia.org/wiki/Lapsen_oikeuksien_p%C3%A4iv%C3%A4"]
     },
     {
         name: "Jean Sibeliuksen päivä",
         date: dayjs(dayjs().year() + "-12-8"),
-        description: "Jean Sibeliuksen päivää eli suomalaisen musiikin päivää vietetään Jean Sibeliuksen syntymäpäivänä 8. joulukuuta. Sisäministeriö antoi suosituksen liputuksesta vuonna 2005 ja teki Helsingin yliopiston almanakkatoimistolle esityksen päivän lisäämisestä kalentereihin vuonna 2007. Jean Sibeliuksen päivä on merkitty kalentereihin liputuspäiväksi vuosikerrasta 2011 lähtien.",
+        description: `Jean Sibeliuksen päivää eli suomalaisen musiikin päivää vietetään 8. joulukuuta säveltäjä Jean Sibeliuksen syntymäpäivänä. Päivä on vakiintunut liputuspäivä, joka on virallisesti merkitty kalentereihin vuodesta 2011 lähtien. Sibelius on Suomen tunnetuin säveltäjä, jonka teokset, kuten Finlandia, ovat vahvistaneet suomalaista musiikki-identiteettiä maailmalla. Päivänä liputetaan ja kuunnellaan konsertteja, jotka juhlistavat suomalaista musiikkia.`,
         official: false,
         links: ["https://fi.wikipedia.org/wiki/Jean_Sibeliuksen_p%C3%A4iv%C3%A4"]
     },
     {
         name: "Kalevalan päivä",
         date: dayjs(dayjs().year() + "-2-28"),
-        description: "Kalevalan päivä on suomalaisen kulttuurin päivä, jota vietetään Suomen kansalliseepoksen, Kalevalan kunniaksi 28. helmikuuta. Päivä on virallinen liputuspäivä.",
+        description: `Kalevalan päivää eli suomalaisen kulttuurin päivää vietetään 28. helmikuuta. Päivä on virallinen liputuspäivä, joka juhlistaa Suomen kansalliseeposta Kalevalaa ja sen kokoajaa Elias Lönnrotia. Päivämäärä perustuu siihen, että Lönnrot päiväsi Vanhan Kalevalan esipuheen 28. helmikuuta 1835. Liputuksen ohella järjestetään juhlia, runo- ja musiikkitilaisuuksia, joissa Kalevalan perintö elää.`,
         official: true,
         links: ["https://fi.wikipedia.org/wiki/Kalevalan_p%C3%A4iv%C3%A4"]
     },
     {
         name: "Vappu",
         date: dayjs(dayjs().year() + "-5-1"),
-        description: "Vappu on vuosittain 1. toukokuuta vietettävä enimmäkseen länsimaalainen kansainvälinen juhlapäivä ja monissa maissa yleinen vapaapäivä. Se on kevään loppupuolen juhlapäivä sekä kansainvälinen työväen juhlapäivä. Suomessa vapunpäivää aattopäivineen vietetään työväen, ylioppilaiden ja kevään karnevaalijuhlana. Vuodesta 1979 lähtien vappu on ollut Suomessa virallinen liputuspäivä, suomalaisen työn päivä. Juhlapäivä on saanut nimensä pyhästä Valburgista, jonka muistopäivä on 1. päivä toukokuuta.",
+        description: `Vappua eli suomalaisen työn päivää vietetään 1. toukokuuta. Päivä on virallinen liputuspäivä, joka yhdistää kevään ja työväen juhlan perinteitä. Suomessa vappua vietetään jo huhtikuun viimeisestä päivästä lähtien, ja päivään kuuluvat ylioppilaslakit, ilmapallot ja perinteinen sima. Virallisena liputuspäivänä liputetaan työn ja yhteiskunnallisen tasa-arvon kunniaksi.`,
         official: true,
         links: ["https://fi.wikipedia.org/wiki/Vappu"]
     },
     {
         name: "Äitienpäivä",
         date: mothersDay(),
-        description: "Äitienpäivä on äitien kunniaksi vuosittain vietettävä juhlapäivä. Sen ajankohta vaihtelee maittain. Suomessa äitienpäivä on toukokuun toisena sunnuntaina, ja se on yksi virallisista liputuspäivistä.",
+        description: `Äitienpäivää vietetään Suomessa toukokuun toisena sunnuntaina äitien kunniaksi. Päivä on virallinen liputuspäivä, jolloin monissa kodeissa ja yhteisöissä nostetaan lippu salkoon. Perinteisiin kuuluvat kukat, käsin tehdyt kortit ja perheen yhteinen aamiainen tai brunssi. Äitienpäivä on yksi Suomen seitsemästä virallisesta jokavuotisesta liputuspäivästä.`,
         official: true,
         links: ["https://fi.wikipedia.org/wiki/%C3%84itienp%C3%A4iv%C3%A4"]
     },
     {
         name: "Puolustusvoimain lippujuhlan päivä",
         date: dayjs(dayjs().year() + "-6-4"),
-        description: "Puolustusvoimain lippujuhlan päivä on Suomessa vuosittain 4. kesäkuuta vietettävä puolustusvoimien juhlapäivä ja virallinen liputuspäivä. Lippujuhlapäivänä jaetaan myönnetyt kunniamerkit ja ylennetään ansioituneita sotilaita ja reserviläisiä.",
+        description: `Puolustusvoimain lippujuhlan päivää vietetään 4. kesäkuuta. Päivä on virallinen liputuspäivä, joka samanaikaisesti muistuttaa Suomen marsalkka C. G. E. Mannerheimin syntymäpäivää. Puolustusvoimat järjestää päivänä valtakunnallisen paraatin ja tasavallan presidentti jakaa ylennykset sekä myöntää kunniamerkkejä. Liputus ja juhlallisuudet korostavat maanpuolustuksen arvoa ja yhteiskunnan tukea asevelvollisille.`,
         official: true,
         links: ["https://fi.wikipedia.org/wiki/Puolustusvoimain_lippujuhlan_p%C3%A4iv%C3%A4"]
     },
     {
         name: "Juhannuspäivä",
         date: juhannus(),
-        description: "Juhannus on valon ja keskikesän juhla, jota vietetään kesäkuussa kesäpäivänseisauksen tienoilla. Suomessa juhannus on yöttömän yön juhla, kun pohjoisen napapiirin pohjoispuolella aurinko ei laske lainkaan kesäpäivänseisauksena. Suomessa juhannus on myös virallinen liputuspäivä, jolloin liputetaan koko juhannusyön ajan.",
+        description: `Juhannuspäivää vietetään kesäkuun 20. ja 26. päivän välisenä lauantaina. Päivä on virallinen liputuspäivä ja tunnetaan myös Suomen lipun päivänä. Juhannusaattona liputus alkaa kello 18 ja päättyy juhannuspäivänä kello 21. Perinteisiin kuuluvat kokot, sauna, uiminen ja valoisan yön juhliminen ystävien ja perheen kesken.`,
         official: true,
         links: ["https://fi.wikipedia.org/wiki/Juhannus"]
     },
     {
         name: "Isänpäivä",
         date: fathersDay(),
-        description: "Isänpäivä on juhlapäivä, jota vietetään isien kunniaksi ja muistoksi. Suomessa, muissa Pohjoismaissa Tanskaa lukuun ottamatta sekä Virossa päivää vietetään marraskuun toisena sunnuntaina, puoli vuotta äitienpäivän jälkeen. Muualla maailmassa ajankohta vaihtelee. Isänpäivä on ollut Suomessa virallinen liputuspäivä vuodesta 2019, sitä aiemmin se oli vakiintunut liputuspäivä vuosina 1987–2018. Myös isoisiä usein juhlistetaan isänpäivänä.",
+        description: `Isänpäivää vietetään Suomessa marraskuun toisena sunnuntaina isien ja isoisien kunniaksi. Päivä on virallinen liputuspäivä vuodesta 2019 lähtien, sitä ennen se oli vakiintunut liputuspäivä vuosina 1987–2018. Perinteisiin kuuluvat liputus, kortit ja perheen yhteinen ruoka. Päivä on yksi Suomen seitsemästä virallisesta jokavuotisesta liputuspäivästä.`,
         official: true,
         links: ["https://fi.wikipedia.org/wiki/Is%C3%A4np%C3%A4iv%C3%A4"]
     },
     {
         name: "Itsenäisyyspäivä",
         date: dayjs(dayjs().year() + "-12-6"),
-        description: "Suomen itsenäisyyspäivä on Suomen kansallispäivä, jota vietetään 6. joulukuuta 1917 tapahtuneen itsenäistymisen kunniaksi. Itsenäisyyspäivä on vakavamielinen juhla, johon liittyy sodan ja kaatuneiden muisteleminen. Päivään liittyy monia jokavuotisia perinteitä, kuten jo ensimmäisen presidentin ajoista vietetty tasavallan presidentin itsenäisyyspäivän vastaanotto, paraateja, soihtukulkueita ja uudempana perinteenä Tuntemattoman sotilaan televisioesitys.",
+        description: `Suomen itsenäisyyspäivää vietetään 6. joulukuuta kansallispäivänä. Päivä on virallinen liputuspäivä, joka muistuttaa vuoden 1917 itsenäisyysjulistuksesta. Itsenäisyyspäivä on vakavamielinen juhla, johon liittyy kaatuneiden ja veteraanien muistelu. Perinteitä ovat tasavallan presidentin itsenäisyyspäivän vastaanotto, paraatit, soihtukulkueet, kynttilöiden sytyttäminen haudoille ja Tuntemattoman sotilaan televisioesitys.`,
         official: true,
         links: ["https://fi.wikipedia.org/wiki/Suomen_itsen%C3%A4isyysp%C3%A4iv%C3%A4"]
     },
     {
         name: "Suomen luonnon päivä",
         date: suomenLuonnonPaiva(),
-        description: "Suomen luonnon päivä on luonnon juhlapäivä, jota vietetään elokuun viimeisenä lauantaina. Päivän tarkoituksena on koota suomalaiset yhteen juhlistamaan ja arvostamaan Suomen luontoa. Suomen luonnon päivää on vietetty vuodesta 2013. Vuonna 2017 sisäministeriö antoi ensimmäistä kertaa Suomen luonnon päiväksi virallisen liputussuosituksen. Sisäministeriö tiedotti maaliskuussa 2021, että vuodesta 2023 lähtien Suomen luonnon päivä on vakiintunut liputuspäivä.",
-        official: true,
+        description: `Suomen luonnon päivää vietetään elokuun viimeisenä lauantaina. Päivä on vakiintunut liputuspäivä, joka on merkitty kalentereihin liputuspäiväksi vuodesta 2023 lähtien, vaikka päivää on juhlittu jo vuodesta 2013. Päivän tarkoituksena on koota suomalaisia yhteen juhlistamaan ja arvostamaan kotimaista luontoa. Metsät, järvet ja saaristo ovat päivän keskiössä, ja eri puolilla maata järjestetään luontoretkiä, talkoita ja kulttuuritapahtumia.`,
+        official: false,
         links: ["https://fi.wikipedia.org/wiki/Suomen_luonnon_p%C3%A4iv%C3%A4"]
     },
     {
         name: "Miina Sillanpään ja kansalaisvaikuttamisen päivä",
         date: dayjs(dayjs().year() + "-10-1"),
-        description: " Päivän tarkoituksena on muistaa Miina Sillanpään elämäntyötä ja nostaa esille kansalaisvaikuttamisen merkitys yhteiskunnassa. Koska Sillanpään syntymäpäivä 4.6. on puolustusvoimain lippujuhlan päivä, liputuspäiväksi valittiin 1.10., jolloin valtiopäiväjärjestys ja vaalilaki tulivat voimaan vuonna 1906 Suomen suuriruhtinaskunnassa. Miina Sillanpään päivää vietetään Suomessa myös Järjestöjen päivänä. Päivä merkitään kalentereihin liputuspäiväksi vuonna 2023.",
+        description: `Miina Sillanpään ja kansalaisvaikuttamisen päivää vietetään 1. lokakuuta. Päivä on vakiintunut liputuspäivä, joka muistuttaa kansanedustaja ja sosiaalivaikuttaja Miina Sillanpään elämäntyötä sekä korostaa kansalaisvaikuttamisen merkitystä. Koska Sillanpään syntymäpäivä 4. kesäkuuta on jo puolustusvoimain lippujuhlan päivä, liputuspäiväksi valittiin 1. lokakuuta, jolloin yleinen ja yhtäläinen äänioikeus tuli voimaan vuonna 1906. Päivää vietetään myös Järjestöjen päivänä liputuksen ja yhdistystoiminnan merkeissä.`,
         official: false,
         links: ["https://valtioneuvosto.fi/-/1410869/suomen-luonnon-paiva-ja-miina-sillanpaan-ja-kansalaisvaikuttamisen-paiva-liputuspaiviksi-kalenteriin-vuonna-2023"]
     },
 ]
-

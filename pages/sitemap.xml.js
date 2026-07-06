@@ -1,21 +1,36 @@
 import { liputuspaivat } from '../liputuspaivat'
 
 const SITE_URL = 'https://mitatanaanliputetaan.vercel.app'
+const KAIKKI_LIPUTUSPAIVAT_PATH = '/kaikki-suomen-liputuspäivät'
 
 function generateSitemap() {
   const currentDate = new Date().toISOString().split('T')[0]
-  
-  // Home page
+
+  // Static pages
   const urls = [
     {
       loc: SITE_URL,
       lastmod: currentDate,
+      changefreq: 'daily',
       priority: '1.00'
     },
     {
-      loc: `${SITE_URL}/kaikkiSuomenLiputuspaivat`,
+      loc: `${SITE_URL}${KAIKKI_LIPUTUSPAIVAT_PATH}`,
       lastmod: currentDate,
+      changefreq: 'weekly',
       priority: '0.80'
+    },
+    {
+      loc: `${SITE_URL}/about`,
+      lastmod: currentDate,
+      changefreq: 'monthly',
+      priority: '0.50'
+    },
+    {
+      loc: `${SITE_URL}/rajapinta-api`,
+      lastmod: currentDate,
+      changefreq: 'monthly',
+      priority: '0.50'
     }
   ]
 
@@ -25,7 +40,8 @@ function generateSitemap() {
     urls.push({
       loc: `${SITE_URL}/liputuspaivat/${encodedName}`,
       lastmod: currentDate,
-      priority: '0.80'
+      changefreq: 'yearly',
+      priority: '0.60'
     })
   })
 
@@ -38,6 +54,7 @@ function generateSitemap() {
 ${urls.map(url => `  <url>
     <loc>${url.loc}</loc>
     <lastmod>${url.lastmod}</lastmod>
+    <changefreq>${url.changefreq}</changefreq>
     <priority>${url.priority}</priority>
   </url>`).join('\n')}
 </urlset>`
@@ -60,5 +77,3 @@ export async function getServerSideProps({ res }) {
 export default function Sitemap() {
   return null
 }
-
-
