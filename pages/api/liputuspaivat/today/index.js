@@ -1,5 +1,9 @@
 import { liputuspaivat } from "../../../../liputuspaivat"
-import dayjs from "dayjs"
+import {
+	formatLiputuspaivaForApi,
+	helsinkiTodayFormatted,
+	isLiputuspaivaToday,
+} from "../../../../utils/helsinkiToday"
 
 function handler(req, res) {
 	if (req.method !== 'GET') {
@@ -7,22 +11,22 @@ function handler(req, res) {
 	}
 
 	try {
-		const today = dayjs()
-		const liputuspaivatToday = liputuspaivat.filter(liputuspaiva => {
-			const liputuspaivaDate = dayjs(liputuspaiva.date)
-			return liputuspaivaDate.isSame(today, 'day')
-		})
+		const date = helsinkiTodayFormatted()
+		const liputuspaivatToday = liputuspaivat
+			.filter((liputuspaiva) => isLiputuspaivaToday(liputuspaiva.date))
+			.map(formatLiputuspaivaForApi)
 
 		if (liputuspaivatToday.length === 0) {
-			return res.status(404).json({
+			return res.status(200).json({
+				data: [],
+				date,
 				message: 'Tänään ei ole liputuspäivä',
-				date: today.format('DD.MM.YYYY')
 			})
 		}
 
 		return res.status(200).json({
 			data: liputuspaivatToday,
-			date: today.format('DD.MM.YYYY')
+			date,
 		})
 	} catch (error) {
 		console.error('Error in today API:', error)
