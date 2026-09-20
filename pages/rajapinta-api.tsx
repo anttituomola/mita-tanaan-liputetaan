@@ -99,10 +99,13 @@ const Api: React.FC = () => {
           <div className='api-notice'>
             <h2>🔐 API-käyttö vaatii API-avaimen</h2>
             <p>
-              Väärinkäytön estämiseksi API vaatii nyt API-avaimen ulkoisiin kutsuihin. 
-              Jos tarvitset API-käyttöä projektissasi, ole yhteydessä sähköpostitse 
-              saadaksesi henkilökohtaisen API-avaimen. Sivuston sisäinen toiminnallisuus 
-              jatkaa normaalia toimintaa.
+              Väärinkäytön estämiseksi useimmat rajapinnan päätepisteet vaativat API-avaimen
+              ulkoisiin kutsuihin. Poikkeuksena{' '}
+              <code>GET /api/liputuspaivat/today</code> on julkinen ilman avainta (esim.
+              e-ink-näytöt ja yksinkertaiset HTTP-pollerit). Muut päätepisteet (
+              <code>/api/liputuspaivat</code>, <code>thisWeek</code>, <code>thisMonth</code>)
+              vaativat edelleen avaimen. Jos tarvitset laajempaa API-käyttöä, ole yhteydessä
+              sähköpostitse saadaksesi henkilökohtaisen API-avaimen.
             </p>
           </div>
 
@@ -140,7 +143,9 @@ const Api: React.FC = () => {
 
             <h3>Autentikointi</h3>
             <p>
-              Ulkoiset API-kutsut vaativat API-avaimen. Lähetä avain joko:
+              Ulkoiset API-kutsut vaativat API-avaimen, paitsi julkinen{' '}
+              <code>GET /api/liputuspaivat/today</code>. Muille päätepisteille lähetä avain
+              joko:
             </p>
             <ul>
               <li><code>X-API-Key</code> headerissa</li>
@@ -162,9 +167,17 @@ const Api: React.FC = () => {
                 <code>GET /api/liputuspaivat/today</code>
               </p>
               <p>
-                Palauttaa kuluvan päivän liputuspäivät. Jos liputuspäivää ei
-                ole, palauttaa 404-vastauksen.
+                Julkinen päätepiste (ei API-avainta). Palauttaa kuluvan päivän
+                liputuspäivät Suomen aikavyöhykkeessä (Europe/Helsinki). Jos
+                liputuspäivää ei ole, palauttaa HTTP 200 ja tyhjän{' '}
+                <code>data</code>-taulukon sekä viestin{' '}
+                <code>Tänään ei ole liputuspäivä</code>.
               </p>
+              <pre>
+                <code>
+                  curl https://mitatanaanliputetaan.vercel.app/api/liputuspaivat/today
+                </code>
+              </pre>
 
               <h4>Tämän viikon liputuspäivät</h4>
               <p>

@@ -126,9 +126,12 @@ function checkRateLimit(ip) {
 	return true // Not rate limited
 }
 
+const PUBLIC_API_PATHS = new Set(['/api/liputuspaivat/today'])
+
 export function proxy(request) {
 	// Only apply to API routes
 	if (request.nextUrl.pathname.startsWith('/api/')) {
+		const pathname = request.nextUrl.pathname
 		const host = request.headers.get('host')
 		const referer = request.headers.get('referer')
 		const userAgent = request.headers.get('user-agent') || ''
@@ -136,6 +139,17 @@ export function proxy(request) {
 
 		// Allow localhost for development
 		if (host && (host.includes('localhost') || host.includes('127.0.0.1'))) {
+			return NextResponse.next()
+		}
+
+		// Public read-only endpoint for e-ink dashboards and simple pollers (GET only)
+		if (
+			request.method === 'GET' &&
+			PUBLIC_API_PATHS.has(pathname)
+		) {
+			logRequest(request, 200, 'PUBLIC_ENDPOINT', {
+				authType: 'public',
+			})
 			return NextResponse.next()
 		}
 
