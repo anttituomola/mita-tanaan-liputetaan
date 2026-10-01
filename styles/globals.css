@@ -76,11 +76,13 @@ a:focus {
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* Stretch children to container width so long titles can wrap on narrow viewports */
+  align-items: stretch;
   max-width: 960px;
   margin: 0 auto;
   padding: 2rem 1rem;
   width: 100%;
+  min-width: 0;
 }
 
 .container2 {
@@ -99,8 +101,12 @@ a:focus {
 h1 {
   color: white;
   font-size: 5rem;
-  word-wrap: break-word;
   text-align: center;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-wrap: break-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
 }
 
 h2, p {
@@ -137,8 +143,12 @@ h3 {
   margin: 0;
   color: white;
   font-size: 5rem;
-  word-wrap: break-word;
   text-align: center;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-wrap: break-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
 }
 
 .flag-date {
@@ -256,16 +266,10 @@ ul {
 @media screen and (max-width: 960px) {
   h1 {
     font-size: 2.5rem;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    display: inline-block;
-    overflow-wrap: anywhere;
-    margin-block-end: 0px;
+    margin-block-end: 0;
   }
   .theDay {
     font-size: 2.5rem;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
   }
   .container {
     margin: 0;
